@@ -1,0 +1,88 @@
+.container-banner {
+    width: 100%;
+    height: 40em;
+    display: flex;
+
+
+    .banner-left {
+        width: 50%;
+
+
+        img {
+            height: 100%;
+            width: 100%;
+            transform: scale(1);
+            /* Giữ ảnh ở kích thước ban đầu */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            /* Thêm hiệu ứng chuyển đổi mượt mà */
+
+            /* Hiệu ứng mờ dần và trượt ảnh */
+            &:hover {
+                cursor: pointer;
+                /* Khi hover, ảnh sẽ mờ đi một chút */
+                transform: scale(1.05);
+                /* Phóng to nhẹ ảnh khi hover */
+            }
+        }
+    }
+
+    .banner-right {
+        width: 50%;
+        height: 100%;
+
+        .Content-up {
+            height: 50%;
+
+            img {
+                height: 100%;
+                position: relative;
+                width: 100%;
+                transform: scale(1);
+                /* Giữ ảnh ở kích thước ban đầu */
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                /* Thêm hiệu ứng chuyển đổi mượt mà */
+
+                /* Hiệu ứng mờ dần và trượt ảnh */
+                &:hover {
+                    cursor: pointer;
+                    /* Khi hover, ảnh sẽ mờ đi một chút */
+                    transform: scale(1.05);
+                    /* Phóng to nhẹ ảnh khi hover */
+                }
+            }
+        }
+
+        .Content-down {
+            height: 50%;
+            display: flex;
+
+            .child-right {
+                width: 50%;
+            }
+
+            .child-left {
+                width: 50%;
+            }
+
+            img {
+                height: 100%;
+                position: relative;
+                width: 100%;
+                transform: scale(1);
+                /* Giữ ảnh ở kích thước ban đầu */
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                /* Thêm hiệu ứng chuyển đổi mượt mà */
+
+                /* Hiệu ứng mờ dần và trượt ảnh */
+                &:hover {
+                    cursor: pointer;
+                    /* Khi hover, ảnh sẽ mờ đi một chút */
+                    transform: scale(1.05);
+                    /* Phóng to nhẹ ảnh khi hover */
+                }
+            }
+        }
+
+
+    }
+}

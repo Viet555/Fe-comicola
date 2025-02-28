@@ -1,0 +1,57 @@
+.main-container {
+    display: flex;
+    width: 100%;
+    height: auto;
+
+    .content-left {
+        padding: 2%;
+        border: 1px solid red;
+        width: 30%;
+        text-align: center;
+
+        img {
+            height: 3rem;
+        }
+    }
+
+    .content-center {
+
+
+        border: 1px solid rgb(29, 129, 51);
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-left: 25px;
+
+        }
+
+        :hover {
+            cursor: pointer;
+            color: rgb(158, 110, 110);
+        }
+    }
+
+    .content-right {
+        border: 1px solid rgb(74, 40, 178);
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            margin-left: 20px;
+            color: rgb(56, 54, 54);
+
+            :hover {
+                cursor: pointer;
+                color: red;
+                transition: .3s;
+            }
+        }
+    }
+}

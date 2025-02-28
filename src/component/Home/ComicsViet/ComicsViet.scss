@@ -1,0 +1,107 @@
+.ComicsViet-container {
+    .title-header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-top: 30px;
+
+        .title-header1 {
+            font-size: 46px;
+            color: rgba(89, 94, 94, 0.564);
+        }
+
+        .title-header2 {
+            font-size: 25px;
+
+        }
+
+    }
+
+    .Comics-content {
+        width: 100%;
+        display: flex;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .content {
+            position: relative;
+
+            img {
+                position: relative;
+                padding: 6px;
+                transition: opacity .7s ease-in-out 0s;
+                height: 380px;
+                width: 95%;
+                transform: scale(1);
+                /* Giữ ảnh ở kích thước ban đầu */
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                /* Thêm hiệu ứng chuyển đổi mượt mà */
+
+                /* Hiệu ứng mờ dần và trượt ảnh */
+                &:hover {
+
+                    /* Khi hover, ảnh sẽ mờ đi một chút */
+                    transform: scale(1.05);
+
+                    /* Phóng to nhẹ ảnh khi hover */
+
+                }
+            }
+
+            .info-product {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                transition: .3s;
+            }
+
+            .add-cart {
+                text-align: center;
+                top: 95%;
+                opacity: -1;
+                padding: 10px;
+                width: 60%;
+                margin-left: 55px;
+                background-color: rgb(230, 102, 17);
+                position: absolute;
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                    cursor: pointer;
+                    transition: .5s;
+                }
+            }
+
+            &:hover .add-cart {
+                opacity: 1;
+                transition: .3s;
+
+            }
+
+            &:hover .info-product {
+                opacity: -1;
+
+            }
+        }
+
+    }
+
+    .all-product {
+        text-align: center;
+        padding: 10px 20px;
+
+        background-color: rgb(230, 102, 17);
+        width: fit-content;
+        margin-left: 43%;
+
+        &:hover {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+    }
+}

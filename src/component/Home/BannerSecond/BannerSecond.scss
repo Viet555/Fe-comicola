@@ -1,0 +1,132 @@
+.BannerSecond-container {
+    display: flex;
+    width: 90%;
+    height: 35em;
+    padding-top: 30px;
+    justify-content: center;
+    gap: 30px;
+
+    img {
+        height: 100%;
+    }
+
+    .banner-left {
+        width: 40%;
+        position: relative;
+
+
+        .info-banner {
+            padding: 15px;
+            height: 110px;
+            width: 102%;
+            background-color: black;
+            color: white;
+            display: flex;
+            position: absolute;
+            top: 80%;
+            flex-direction: column;
+            opacity: 0;
+
+            .title {
+                width: fit-content;
+                font-size: 25px;
+                margin-left: 130px;
+                border-bottom: 1px solid white;
+            }
+
+            .text-banner {
+                text-align: center;
+                display: -webkit-box;
+                /* Sử dụng định dạng khối linh hoạt */
+                -webkit-box-orient: vertical;
+                /* Hướng khối theo chiều dọc */
+                -webkit-line-clamp: 2;
+                /* Giới hạn hiển thị tối đa 2 dòng */
+                overflow: hidden;
+                /* Ẩn phần nội dung vượt quá */
+                text-overflow: ellipsis;
+                /* Thêm dấu "..." ở cuối */
+                word-break: break-word;
+                /* Bẻ từ nếu quá dài */
+                padding-top: 7px;
+                font-size: 13px;
+            }
+
+            &:hover {
+                background-color: rgb(93, 87, 87);
+                cursor: pointer;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            transition: .3s;
+            transform: scaleY(1.1);
+        }
+
+        &:hover .info-banner {
+            opacity: 1;
+            transition: .5s;
+        }
+    }
+
+    .banner-right {
+        width: 40%;
+
+        .info-banner {
+            padding: 15px;
+            height: 110px;
+            width: 102%;
+            background-color: black;
+            color: white;
+            display: flex;
+            position: absolute;
+            top: 80%;
+            flex-direction: column;
+            opacity: 0;
+
+            .title {
+                width: fit-content;
+                font-size: 25px;
+                margin-left: 130px;
+                border-bottom: 1px solid white;
+
+            }
+
+            .text-banner {
+                text-align: center;
+                display: -webkit-box;
+                /* Sử dụng định dạng khối linh hoạt */
+                -webkit-box-orient: vertical;
+                /* Hướng khối theo chiều dọc */
+                -webkit-line-clamp: 2;
+                /* Giới hạn hiển thị tối đa 2 dòng */
+                overflow: hidden;
+                /* Ẩn phần nội dung vượt quá */
+                text-overflow: ellipsis;
+                /* Thêm dấu "..." ở cuối */
+                word-break: break-word;
+                /* Bẻ từ nếu quá dài */
+                padding-top: 7px;
+                font-size: 13px;
+            }
+
+            &:hover {
+                background-color: rgb(93, 87, 87);
+                cursor: pointer;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            transition: .3s;
+            transform: scaleY(1.1);
+        }
+
+        &:hover .info-banner {
+            opacity: 1;
+            transition: .5s;
+        }
+    }
+
+}
