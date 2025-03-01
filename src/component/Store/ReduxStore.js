@@ -5,8 +5,9 @@ import rootReducer from "./Reducer/RootReducer";
 import { applyMiddleware, createStore } from "redux";
 
 import persistStore from "redux-persist/es/persistStore";
-import thunk from "redux-thunk";
+
 import { composeWithDevTools } from "@redux-devtools/extension";
+import { thunk } from "redux-thunk";
 const persistConfig = {
     key: 'root',
     stateReconciler: autoMergeLevel2,

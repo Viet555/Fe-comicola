@@ -1,0 +1,5 @@
+const actiontypes = Object.freeze(
+    {
+
+    }
+)

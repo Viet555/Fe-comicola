@@ -1,4 +1,5 @@
 
+import { ToastContainer } from 'react-toastify';
 import './app.scss';
 import Banner from './component/BannerHeader/Banner';
 import Footer from './component/Footer/Footer';
@@ -11,8 +12,6 @@ function App() {
       <header className="App-header">
         <div className='App-header'>
 
-
-
         </div>
         <div className='App-MainContainer'>
           <Headerr />
@@ -21,7 +20,19 @@ function App() {
           <AppRoute />
         </div>
         <Footer />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
 
+        />
       </header>
     </div>
   );

@@ -1,5 +1,8 @@
 import axios from "../utils/CustomizeAxios";
 const getAllUserTable = () => {
-
+    return axios.get('/api/GetAllUser')
 }
-export { getAllUserTable }
+const createUser = (dataCreate) => {
+    return axios.post('/api/CreateUSer', dataCreate)
+}
+export { getAllUserTable, createUser }
