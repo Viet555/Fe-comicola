@@ -5,4 +5,8 @@ const getAllUserTable = () => {
 const createUser = (dataCreate) => {
     return axios.post('/api/CreateUSer', dataCreate)
 }
-export { getAllUserTable, createUser }
+const DeleteUser = (UserId) => {
+    console.log(UserId)
+    return axios.delete(`/api/DeleteUser?id=${UserId}`)
+}
+export { getAllUserTable, createUser, DeleteUser }

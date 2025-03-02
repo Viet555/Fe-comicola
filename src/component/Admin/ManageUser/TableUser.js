@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Table } from "react-bootstrap"
-import { getAllUserTable } from "../../../service/ApiService"
+import { DeleteUser, getAllUserTable } from "../../../service/ApiService"
+import { toast } from "react-toastify"
 
 const TableUser = () => {
     const [listUSer, setListUser] = useState('')
@@ -15,7 +16,19 @@ const TableUser = () => {
             setListUser(data)
         }
     }
-    console.log('list', listUSer)
+    const handleDeleteUser = async (item) => {
+        console.log(item._id)
+        if (item && item._id) {
+            let response = await DeleteUser(item._id)
+            if (response && response.EC === 0) {
+                toast.success(response.MES)
+                handleGetUserTable()
+            }
+            if (response && response.EC !== 0) {
+                toast.error(response.MES)
+            }
+        }
+    }
     return (
         <>
             <Table striped bordered hover className='text-center col-12'>
@@ -31,10 +44,12 @@ const TableUser = () => {
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     {listUSer && listUSer.length > 0 &&
                         listUSer.map((item, index) => {
+                            console.log(item.image)
                             return (
+
                                 <tr key={`table-user-manager${index}`}>
 
                                     <td>{item.firstName} </td>
@@ -43,13 +58,13 @@ const TableUser = () => {
                                     <td>{item.gender}</td>
                                     <td>{item.address}</td>
                                     <td>{item.roleId}</td>
-                                    <td>{item.image}</td>
+                                    <td><img className="img-tabel " style={{ width: "60px" }} src={item.image} /></td>
 
                                     <td>
                                         <div className='action-btn '>
                                             <button
                                                 className='btn btn-danger mx-3 px-3'
-                                            // onClick={() => handleDeleteUser(item)}
+                                                onClick={() => handleDeleteUser(item)}
                                             >
                                                 <i className="fa-solid fa-trash-can "></i></button>
                                             <button className='btn btn-warning px-3'
@@ -64,15 +79,13 @@ const TableUser = () => {
                     }
 
 
-
-
-                    {/* {listUser && listUser.length === 0 &&
+                    {listUSer && listUSer.length === 0 &&
                         <tr>
-                            <td colSpan={'6'}>
+                            <td colSpan={'7'}>
                                 not foud User
                             </td>
                         </tr>
-                    } */}
+                    }
                 </tbody>
             </Table>
 
