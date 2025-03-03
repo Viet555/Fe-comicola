@@ -3,19 +3,21 @@ import { Table } from "react-bootstrap"
 import { DeleteUser, getAllUserTable } from "../../../service/ApiService"
 import { toast } from "react-toastify"
 
-const TableUser = () => {
-    const [listUSer, setListUser] = useState('')
+const TableUser = (props) => {
+    // const [listUSer, setListUser] = useState('')
+
+    const { handleEditUser, listUSer, handleGetUserTable } = props
     useEffect(() => {
         handleGetUserTable()
     }, [])
-    const handleGetUserTable = async () => {
+    // const handleGetUserTable = async () => {
 
-        let response = await getAllUserTable()
-        if (response && response.data && response.EC === 0) {
-            let data = response.data
-            setListUser(data)
-        }
-    }
+    //     let response = await getAllUserTable()
+    //     if (response && response.data && response.EC === 0) {
+    //         let data = response.data
+    //         setListUser(data)
+    //     }
+    // }
     const handleDeleteUser = async (item) => {
         console.log(item._id)
         if (item && item._id) {
@@ -47,7 +49,7 @@ const TableUser = () => {
                 <tbody >
                     {listUSer && listUSer.length > 0 &&
                         listUSer.map((item, index) => {
-                            console.log(item.image)
+
                             return (
 
                                 <tr key={`table-user-manager${index}`}>
@@ -68,7 +70,7 @@ const TableUser = () => {
                                             >
                                                 <i className="fa-solid fa-trash-can "></i></button>
                                             <button className='btn btn-warning px-3'
-                                            // onClick={() => handleEditUser(item, imageBuffer)}
+                                                onClick={() => handleEditUser(item,)}
                                             ><i className="fa-solid fa-pen-to-square "></i></button></div>
                                     </td>
 

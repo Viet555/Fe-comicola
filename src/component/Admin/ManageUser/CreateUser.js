@@ -4,17 +4,9 @@ import { toast } from "react-toastify"
 import Select from 'react-select'
 
 
-const CreateUser = () => {
-    const selectGender = [
-        { value: 'Male', label: 'Male' },
-        { value: 'Female', label: 'Female' },
-        { value: 'Other', label: 'Other' }
-    ]
-    const selectRole = [
-        { value: 'user', label: 'user' },
-        { value: 'admin', label: 'admin' },
+const CreateUser = (props) => {
+    const { selectRole, selectGender, handleGetUserTable } = props
 
-    ]
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -119,7 +111,8 @@ const CreateUser = () => {
                     RoleId: '',
                     imagePreview: ''
 
-                },)
+                })
+                handleGetUserTable()
 
             }
             if (res && res.EC !== 0) {
