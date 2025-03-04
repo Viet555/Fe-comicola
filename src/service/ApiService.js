@@ -12,4 +12,7 @@ const DeleteUser = (UserId) => {
 const UpdateAUser = (_id, firstName, lastName, roleId, address, gender, image) => {
     return axios.put('/api/UpdateUser', { _id, firstName, lastName, roleId, address, gender, image })
 }
-export { getAllUserTable, createUser, DeleteUser, UpdateAUser } 
+const UserLogin = (dataLog) => {
+    return axios.post('/api/LoginUser', dataLog)
+}
+export { getAllUserTable, createUser, DeleteUser, UpdateAUser, UserLogin } 

@@ -1,7 +1,62 @@
-import { useNavigate } from 'react-router-dom'
+import { useActionData, useNavigate } from 'react-router-dom'
 import './Log.scss'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { UserLogin } from '../../../service/ApiService'
+import { useDispatch } from 'react-redux'
+import { UserLoginSuccess } from '../../Store/Action/UserAction'
 const Login = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [formLogin, setFormLogin] = useState({
+        email: '',
+        password: ''
+    })
+    const [errors, setErrors] = useState({
+        email: '',
+        password: ''
+    })
+    const checkIsValid = () => {
+        if (!formLogin.email) {
+            setErrors({
+                ...errors,
+                email: 'Email has not been entered '
+            })
+        }
+        if (!formLogin.password) {
+            setErrors({
+                ...errors,
+                password: 'password has not been entered '
+            })
+        }
+    }
+    const handleOnchange = (event) => {
+        setFormLogin({
+            ...formLogin,
+            [event.target.name]: event.target.value
+        })
+        if (event.target.value) {
+            setErrors({
+                [event.target.name]: ''
+            })
+        }
+
+    }
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        checkIsValid()
+        if (!errors) {
+            toast.error('Missing Input ')
+            return;
+        }
+        let res = await UserLogin(formLogin)
+        if (res && res.EC === 0) {
+            dispatch(UserLoginSuccess(res))
+            toast.success(res.MES)
+            navigate('/')
+        }
+
+    }
     return (
         <>
             <div className='login-container'>
@@ -18,26 +73,28 @@ const Login = () => {
                             <label>Email Address(*)</label>
 
                             <input
-                            // value={email}
-                            // type='email'
-                            // className='form-control'
-                            // onChange={(event) => setemmail(event.target.value)}
+                                name='email'
+                                value={formLogin.email}
+                                type='email'
+                                className='form-control'
+                                onChange={(handleOnchange)}
                             />
-
+                            {errors.email && <p style={{ color: 'red' }}>Email has not been entered</p>}
 
                             <label>Password(*)</label>
                             <input
-                            // value={password}
-                            // onChange={(event) => setpassword(event.target.value)}
-                            // type='password'
-                            // className='form-control' 
+                                name='password'
+                                value={formLogin.password}
+                                onChange={(handleOnchange)}
+                                type='password'
+                                className='form-control'
                             />
-
-                            {/* <div className='forgot-password' onClick={() => handleForgotPass()}>Forgot your password?</div> */}
+                            {errors.password && <p style={{ color: 'red' }}>password has not been entered</p>}
+                            <div className='forgot-password' onClick={() => navigate('/')}>Forgot your password?</div>
 
                             <div className='button-control'>
                                 <button className='btn-login'
-                                // onClick={() => handleLogin()}
+                                    onClick={(event) => handleLogin(event)}
                                 >Log in</button>
                                 <button className='btn-login'
                                     onClick={() => navigate('/Register  ')}

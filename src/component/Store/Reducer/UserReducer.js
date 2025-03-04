@@ -21,16 +21,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
             console.log('check data action ', action)
             return {
                 ...state, account: {
-                    ///copyham
+
                     // access_token: action?.payload?.DT?.access_token,
                     // refresh_token: action?.payload?.DT?.refresh_token,
-                    // email: action?.data?.userData.email,
-                    // image: action?.data?.data?.userData.image,
-                    // roleId: action?.data?.userData.roleId,
-                    // firstName: action?.data?.userData.firstname,
-                    // lastName: action?.data?.userData.lastname,
-                    // gender: action?.data?.userData.gender,
-                    // address: action?.data?.userData.address,
+                    email: action?.data?.data?.email,
+                    image: action?.data?.data?.image,
+                    roleId: action?.data?.data?.roleId,
+                    firstName: action?.data?.data?.firstname,
+                    lastName: action?.data?.data?.lastname,
+                    gender: action?.data?.data?.gender,
+                    address: action?.data?.data?.address,
                 },
                 isauthentic: true
             };
