@@ -1,6 +1,6 @@
 import axios from "../utils/CustomizeAxios";
-const getAllUserTable = () => {
-    return axios.get('/api/GetAllUser')
+const getAllUserTable = (id, limit, page) => {
+    return axios.get(`/api/GetAllUser?id=ALL&limit=${limit}&page=${page}`)
 }
 const createUser = (dataCreate) => {
     return axios.post('/api/CreateUSer', dataCreate)

@@ -2,14 +2,17 @@ import { useEffect, useState } from "react"
 import { Table } from "react-bootstrap"
 import { DeleteUser, getAllUserTable } from "../../../service/ApiService"
 import { toast } from "react-toastify"
+import ReactPaginate from "react-paginate"
+import { IconContext } from "react-icons"; // for customizing icons
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"; // icons form react-icons
+
 
 const TableUser = (props) => {
     // const [listUSer, setListUser] = useState('')
 
-    const { handleEditUser, listUSer, handleGetUserTable } = props
-    useEffect(() => {
-        handleGetUserTable()
-    }, [])
+    const { handleEditUser, listUSer, handleGetUserTable, currentPages, totalPages, setCurrentPages } = props
+
+
     // const handleGetUserTable = async () => {
 
     //     let response = await getAllUserTable()
@@ -31,6 +34,14 @@ const TableUser = (props) => {
             }
         }
     }
+
+    const handlePageClick = (event) => {
+
+        console.log(currentPages)
+
+        setCurrentPages(+event.selected + 1)
+        console.log(`User requested page number ${event.selected}`);
+    };
     return (
         <>
             <Table striped bordered hover className='text-center col-12'>
@@ -90,9 +101,29 @@ const TableUser = (props) => {
                     }
                 </tbody>
             </Table>
+            <div className="paginate-main d-flex gap-3 " style={{ justifyContent: 'center', alignItems: 'center', padding: '23px' }}>
+                <ReactPaginate
+                    containerClassName={"pagination gap-4"}
+                    pageClassName={"page-item"}
+                    activeClassName={"active"}
+                    onPageChange={handlePageClick}
+                    nextLabel={
+                        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+                            <AiFillRightCircle />
+                        </IconContext.Provider>
 
+                    }
+                    pageCount={totalPages}
+                    breakLabel="..."
+                    previousLabel={
+                        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+                            <AiFillLeftCircle />
+                        </IconContext.Provider>
+                    }
 
-
+                    forcePage={currentPages - 1}//currentPage = 1 => 1-1 =0 => quay ve trag dau
+                />
+            </div>
         </>
     )
 }
