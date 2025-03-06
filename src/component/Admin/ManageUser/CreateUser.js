@@ -220,6 +220,7 @@ const CreateUser = (props) => {
                             id='img-user'
                             onChange={(event) => handleUploadFile(event)}
                             hidden
+
                         />
                         <div className="img-prev mx-4 " >
 
