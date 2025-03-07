@@ -91,7 +91,6 @@ const CreateUser = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         isValidInput();
-        console.log(errors)
         if (errors === "") {
             toast.error('Missing Input')
             return;
@@ -135,7 +134,7 @@ const CreateUser = (props) => {
         <>
             <div className="Create-container container my-5">
                 <div className="create-main row">
-                    <span className="header-title" style={{ fontSize: '30px' }}> Create New User</span>
+                    <span className="header-title" style={{ fontSize: '30px', color: 'green', textAlign: 'center' }}> Create New User</span>
                     <div className="form-group col-3  my-2">
                         <label>FirstName</label>
                         <input className="form-control "
@@ -177,7 +176,6 @@ const CreateUser = (props) => {
                         <Select
                             name='gender'
                             options={selectGender}
-
                             placeholder={'Choosee gender'}
                             onChange={(event) => setFormData({
                                 ...formData,

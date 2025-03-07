@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Select from 'react-select'
-const CreateProduct = () => {
-
+import { toast } from "react-toastify"
+import { createNewProduct } from "../../../service/ApiService"
+const CreateProduct = (props) => {
+    const { listTypeProduct, buildDataSelect } = props
     const [formCreate, setFormCreate] = useState({
         nameProduct: '',
         count: '',
@@ -24,6 +26,15 @@ const CreateProduct = () => {
         image2: '',
         typeProduct: '',
     })
+    const [dataSelectType, setDataSelectType] = useState({})
+    useEffect(() => {
+        if (listTypeProduct) {
+            let dataBuild = buildDataSelect(listTypeProduct);
+            setDataSelectType(dataBuild)
+        }
+    }, [listTypeProduct]);
+
+
     // const isValidInput = () => {
     //     console.log('check form data ', formCreate)
     //     if (!formCreate.nameProduct) {
@@ -114,10 +125,36 @@ const CreateProduct = () => {
             })
         }
     }
-    const handleCreateProduct = (e) => {
+    const handleCreateProduct = async (e) => {
         isValidInput()
-        console.log(errors)
+        if (!errors) {
+            toast.error('Missing Input')
+            return;
+        }
+        else {
+            let response = await createNewProduct(formCreate)
+            if (response && response.EC === 0) {
+                toast.success(response.MES)
+                setFormCreate({
+                    nameProduct: '',
+                    count: '',
+                    note: '',
+                    desProduct: '',
+                    code: '',
+                    image1: '',
+                    image2: '',
+                    typeProduct: '',
+                    previewImg1: '',
+                    previewImg2: ''
+                })
+            }
+            if (response && response.EC !== 0) {
+                toast.warning(response.MES)
+            }
+        }
+
     }
+
     const handleOnchangeImg = (event) => {
 
         if (event.target && event.target.files && event.target.files[0]) {
@@ -132,11 +169,12 @@ const CreateProduct = () => {
             reader.readAsDataURL(event.target.files[0]);
         }
     }
+
     return (
         <>
             <div className="create-Product container my-5">
                 <div className="create-main row">
-                    <span className="title-header" style={{ textTransform: 'uppercase', textAlign: 'center', fontSize: '25px' }}>Create Product</span>
+                    <span className="title-header" style={{ textTransform: 'uppercase', textAlign: 'center', fontSize: '25px', color: 'blue' }}>Create Product</span>
                     <div className="form-group col-5  my-2">
                         <label>Name Product</label>
                         <input className="form-control "
@@ -168,13 +206,24 @@ const CreateProduct = () => {
                     <div className="form-group col-3  my-2">
                         <label>Type</label>
                         <Select
-                            placeholder=''
+                            name="typeProduct"
+                            isMulti={true}  // Cho phép chọn nhiều
+                            placeholder='Choose Type'
+                            options={dataSelectType}
+                            onChange={(selecttedOptions) => {
+                                let selecttedValues = selecttedOptions.map(item => item.label)
+                                setFormCreate({
+                                    ...formCreate,
+                                    typeProduct: selecttedValues
+                                })
+                            }}
+
                         />
-                        {/* {errors.firstName && <p style={{ color: 'red' }}>firstName has not been entered</p>} */}
+                        {errors.typeProduct && <p style={{ color: 'red' }}>Type has not been entered</p>}
                     </div>
                     <div className="form-group col-4  my-2">
                         <label>Note</label>
-                        <input className="form-control "
+                        <textarea className="form-control "
                             name='note'
                             value={formCreate['note']}
                             onChange={(handleOnchange)}

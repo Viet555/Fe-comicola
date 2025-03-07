@@ -36,11 +36,7 @@ const TableUser = (props) => {
     }
 
     const handlePageClick = (event) => {
-
-        console.log(currentPages)
-
         setCurrentPages(+event.selected + 1)
-        console.log(`User requested page number ${event.selected}`);
     };
     return (
         <>

@@ -15,4 +15,14 @@ const UpdateAUser = (_id, firstName, lastName, roleId, address, gender, image) =
 const UserLogin = (dataLog) => {
     return axios.post('/api/LoginUser', dataLog)
 }
-export { getAllUserTable, createUser, DeleteUser, UpdateAUser, UserLogin } 
+
+const fetchAllDataType = () => {
+    return axios.get('/api/Get-dataType-product',)
+}
+const createNewProduct = (dataCreate) => {
+    return axios.post('/api/Create-product', dataCreate)
+}
+const getDataProductByType = (type, limit, page) => {
+    return axios.get(`/api/getAllproductByType?type=${type}&limit=${limit}&page=${page}`)
+}
+export { getAllUserTable, createUser, DeleteUser, UpdateAUser, UserLogin, fetchAllDataType, createNewProduct, getDataProductByType } 
