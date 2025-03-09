@@ -3,7 +3,7 @@ import Select from 'react-select'
 import { toast } from "react-toastify"
 import { createNewProduct } from "../../../service/ApiService"
 const CreateProduct = (props) => {
-    const { listTypeProduct, buildDataSelect } = props
+    const { listTypeProduct, buildDataSelect, fecthProductTable } = props
     const [formCreate, setFormCreate] = useState({
         nameProduct: '',
         count: '',
@@ -147,6 +147,7 @@ const CreateProduct = (props) => {
                     previewImg1: '',
                     previewImg2: ''
                 })
+                fecthProductTable()
             }
             if (response && response.EC !== 0) {
                 toast.warning(response.MES)

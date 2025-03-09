@@ -1,0 +1,32 @@
+.ManageBanner-container {
+    width: 100%;
+
+    .header-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        text-transform: uppercase;
+        color: rgb(91, 143, 205);
+        font-weight: 600;
+    }
+
+    .banner-main {
+        margin-left: 120px;
+        padding-top: 30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+
+        .content-banner {
+            flex-direction: column;
+            display: flex;
+
+            button {
+                width: 100px;
+            }
+
+        }
+    }
+
+}

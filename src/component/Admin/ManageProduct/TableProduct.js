@@ -4,8 +4,11 @@ import { IconContext } from "react-icons"
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"
 import ReactPaginate from "react-paginate"
 import Select from 'react-select'
+import { deleteAProduct } from "../../../service/ApiService"
+import { toast } from "react-toastify"
 const TableProduct = (props) => {
-    const { totalPages, listProduct, currentPages, setCurrentPages, listTypeProduct, buildDataSelect, setType } = props
+    const { totalPages, listProduct, currentPages, setCurrentPages,
+        listTypeProduct, buildDataSelect, setType, fecthProductTable, handleEditProduct } = props
 
     const handlePageClick = (event) => {
         setCurrentPages(event.selected + 1)
@@ -17,6 +20,15 @@ const TableProduct = (props) => {
             setDataSelectType(typeBuild)
         }
     }, [listTypeProduct])
+    const handleDeleteProduct = async (event) => {
+        let res = await deleteAProduct(event._id)
+        if (res && res.EC === 0) {
+            toast.success(res.MES)
+            fecthProductTable()
+        } else {
+            toast.error(res.MES)
+        }
+    }
     return (
         <>
 
@@ -60,11 +72,11 @@ const TableProduct = (props) => {
                                         <div className='action-btn '>
                                             <button
                                                 className='btn btn-danger mx-3 px-3'
-                                            // onClick={() => handleDeleteUser(item)}
+                                                onClick={() => handleDeleteProduct(item)}
                                             >
                                                 <i className="fa-solid fa-trash-can "></i></button>
                                             <button className='btn btn-warning px-3'
-                                            // onClick={() => handleEditUser(item,)}
+                                                onClick={() => handleEditProduct(item,)}
                                             ><i className="fa-solid fa-pen-to-square "></i></button></div>
                                     </td>
 

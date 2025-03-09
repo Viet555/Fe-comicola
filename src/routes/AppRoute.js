@@ -4,6 +4,7 @@ import Login from "../component/Header/Login/Login";
 import Register from "../component/Header/Login/Register";
 import ManageUSer from "../component/Admin/ManageUser/ManageUser";
 import ManageProducts from "../component/Admin/ManageProduct/ManageProducts";
+import ManageBanner from "../component/Admin/ManageBanner/ManageBanner";
 const AppRoute = () => {
     return (
         <>
@@ -14,6 +15,7 @@ const AppRoute = () => {
 
                 <Route path="/ManageUser" element={<ManageUSer />} />
                 <Route path="/ManageProduct" element={<ManageProducts />} />
+                <Route path="/ManageBanner" element={<ManageBanner />} />
             </Routes>
         </>
     )

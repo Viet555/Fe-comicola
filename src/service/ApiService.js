@@ -25,4 +25,15 @@ const createNewProduct = (dataCreate) => {
 const getDataProductByType = (type, limit, page) => {
     return axios.get(`/api/getAllproductByType?type=${type}&limit=${limit}&page=${page}`)
 }
-export { getAllUserTable, createUser, DeleteUser, UpdateAUser, UserLogin, fetchAllDataType, createNewProduct, getDataProductByType } 
+const deleteAProduct = (productId) => {
+    return axios.delete(`/api/deleteAProduct?id=${productId}`)
+}
+const ApiUpdateProduct = (dataUpdate) => {
+    return axios.put(`/api/Update-Product`, dataUpdate)
+}
+
+
+export {
+    getAllUserTable, createUser, DeleteUser, UpdateAUser,
+    UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct
+} 

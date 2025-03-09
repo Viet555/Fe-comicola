@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import CreateProduct from "./CreateProduct"
 import { useDispatch, useSelector } from "react-redux"
 import * as action from '../../Store/export'
 import _ from "lodash"
 import { getDataProductByType } from "../../../service/ApiService"
 import TableProduct from "./TableProduct"
+import ModalEditUser from "./ModalEditProduct"
 const ManageProducts = () => {
     const dispatch = useDispatch()
     const [listTypeProduct, setListTypeProduct] = useState([])
@@ -14,6 +15,8 @@ const ManageProducts = () => {
     const [listProduct, setListProduct] = useState('')
     const listType = useSelector(state => state.admin.typeProduct)
 
+    const [isShow, setIsShow] = useState(false)
+    const [dataProductEdit, setDataProductEdit] = useState()
     const limit = 6
     console.log(type)
     useEffect(() => {
@@ -60,14 +63,24 @@ const ManageProducts = () => {
     //     keyMap: item.allCodeInfo?.keyMap || ""
     // }));
 
+    const handleEditProduct = (data) => {
+        console.log('check', data)
+        setIsShow(!isShow)
+        if (data) {
+            setDataProductEdit(data)
+        }
 
+    }
     return (
         <>
             <CreateProduct
                 buildDataSelect={buildDataSelect}
                 listTypeProduct={listTypeProduct}
+                fecthProductTable={fecthProductTable}
+
             />
             <TableProduct
+                handleEditProduct={handleEditProduct}
                 listProduct={listProduct}
                 currentPages={currentPages}
                 totalPages={totalPages}
@@ -75,6 +88,15 @@ const ManageProducts = () => {
                 buildDataSelect={buildDataSelect}
                 setCurrentPages={setCurrentPages}
                 setType={setType}
+                fecthProductTable={fecthProductTable}
+            />
+            <ModalEditUser
+                fecthProductTable={fecthProductTable}
+                buildDataSelect={buildDataSelect}
+                listTypeProduct={listTypeProduct}
+                show={isShow}
+                setShow={setIsShow}
+                dataProductEdit={dataProductEdit}
             />
         </>
     )

@@ -22,10 +22,10 @@ const Headerr = () => {
                 </div>
                 <div className="content-right">
                     {userInfor && userInfor.roleId === 'admin' ?
-                        <div className='d-flex'>
-                            <span> <NavLink to='/ManageUser' className='nav-link'>Manage User</NavLink></span>
-                            <span> <NavLink to='/ManageProduct' className='nav-link'>Manage Products</NavLink></span>
-
+                        <div className='d-flex '>
+                            <span> <NavLink to='/ManageUser' className='nav-link SetupBut' >Manage User</NavLink></span>
+                            <span> <NavLink to='/ManageProduct' className='nav-link SetupBut'>Manage Products</NavLink></span>
+                            <span> <NavLink to='/ManageBanner' className='nav-link SetupBut'>Manage Banners</NavLink></span>
                         </div>
                         :
                         <div>
