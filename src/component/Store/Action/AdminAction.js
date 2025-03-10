@@ -1,4 +1,4 @@
-import { fetchAllDataType, getDataProductByType } from "../../../service/ApiService"
+import { ApiFetchAllProductByType, ApitfetchAllBannerByAction, fetchAllDataType, getDataProductByType } from "../../../service/ApiService"
 import actiontypes from "./ActionType"
 
 export const fetchAllTypeProduct = () => {
@@ -20,6 +20,30 @@ export const fetchAllTypeProduct = () => {
         } catch (e) {
             dispatch({
                 type: actiontypes.FETCH_DATA_TYPE_FAIL,
+            })
+            console.log('ERR', e)
+        }
+    }
+}
+export const fetchAllProduct = (action) => {
+    return async (dispatch, getState) => {
+
+        let data = await ApiFetchAllProductByType(action)
+        try {
+            if (data && data.EC === 0) {
+                dispatch({
+                    type: actiontypes.FETCH_ALL_PRODUCT_BY_TYPE_SUCCESS,
+                    data: data.data
+                })
+            } else {
+                dispatch({
+                    type: actiontypes.FETCH_ALL_PRODUCT_BY_TYPE_FAIL,
+
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actiontypes.FETCH_ALL_PRODUCT_BY_TYPE_FAIL,
             })
             console.log('ERR', e)
         }

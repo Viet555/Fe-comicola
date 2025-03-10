@@ -12,7 +12,7 @@
     }
 
     .banner-main {
-        margin-left: 120px;
+
         padding-top: 30px;
         display: flex;
         justify-content: center;
@@ -21,12 +21,97 @@
         .content-banner {
             flex-direction: column;
             display: flex;
+            text-align: center;
 
             button {
+                margin: 0 auto;
                 width: 100px;
             }
 
+            .button-create {
+                margin-top: 20px;
+                width: 130px;
+
+                &:hover {
+                    background-color: rgba(136, 97, 97, 0.701);
+                    transition: .3s;
+                }
+            }
         }
     }
 
+    .table-banner-header {
+        padding-top: 40px;
+
+        .Title-header {
+            font-size: 37px;
+            color: chocolate
+        }
+    }
+
+}
+
+.modal-container {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    flex-wrap: wrap;
+
+    .modal-content {
+        display: flex;
+
+        label {
+            font-size: 20px;
+        }
+
+        .img-product {
+            text-align: center;
+
+            img {
+                height: 150px;
+                width: 200px;
+            }
+
+
+        }
+
+        .btn-select {
+            text-align: end;
+
+            button {
+                width: 150px;
+                text-transform: uppercase;
+
+                &:hover {
+                    transition: .3s;
+                }
+            }
+        }
+
+    }
+}
+
+.modal-body {
+    max-height: 400px;
+    /* Giới hạn chiều cao phần body để tạo thanh cuộn */
+    overflow-y: auto;
+    /* Bật thanh cuộn dọc khi nội dung vượt quá kích thước */
+    padding-right: 10px;
+    /* Để tránh bị che nội dung khi có thanh cuộn */
+}
+
+/* Tùy chỉnh thanh cuộn */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+    /* Độ rộng của thanh cuộn */
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Màu của thanh cuộn */
+    border-radius: 4px;
+    /* Bo tròn thanh cuộn */
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Màu khi hover */
 }

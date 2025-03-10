@@ -5,15 +5,14 @@
     padding-top: 30px;
     justify-content: center;
     gap: 30px;
+    position: relative;
 
     img {
         height: 100%;
     }
 
-    .banner-left {
+    .left-banner {
         width: 40%;
-        position: relative;
-
 
         .info-banner {
             padding: 15px;
@@ -70,7 +69,7 @@
         }
     }
 
-    .banner-right {
+    .right-banner {
         width: 40%;
 
         .info-banner {

@@ -167,6 +167,7 @@ const CreateUser = (props) => {
                         <label>Password</label>
                         <input className="form-control "
                             name='password'
+                            type="password"
                             value={formData['password']}
                             onChange={(handleOnchange)} />
                         {errors.password && <p style={{ color: 'red' }}>Password has not been entered</p>}

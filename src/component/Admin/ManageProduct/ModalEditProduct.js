@@ -105,7 +105,7 @@ const ModalEditUser = (props) => {
         }
     }
     const handleSubmitUpdate = async () => {
-        console.log('cacc', formUpdate)
+
         let response = await ApiUpdateProduct(formUpdate)
         if (response && response.EC === 0) {
             toast.success(response.MES)

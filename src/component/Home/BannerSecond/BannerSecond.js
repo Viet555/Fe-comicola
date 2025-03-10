@@ -5,7 +5,7 @@ const BannerSecond = () => {
         <>
             <div className="BannerSecond-container container">
 
-                <div className="banner-left">
+                <div className="left-banner">
                     <img src={bannerS1} />
                     <div className='info-banner'>
                         <span className='title'> Tiệm Cà Phê Sữa Đá</span>
@@ -13,7 +13,7 @@ const BannerSecond = () => {
                     </div>
                 </div>
 
-                <div className="banner-right">
+                <div className="right-banner">
                     <img src={bannerS1} />
                     <div className='info-banner'>
                         <span className='title'> Tiệm Cà Phê Sữa Đá</span>
