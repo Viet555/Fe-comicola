@@ -8,7 +8,6 @@ const ModalEditUser = (props) => {
 
     const { show, setShow, dataProductEdit, listTypeProduct, buildDataSelect, fecthProductTable } = props
     const [dataSelectType, setDataSelectType] = useState({})
-    console.log(props)
     const handleClose = () => {
         setShow(!show)
         setFormUpdate({
@@ -22,7 +21,10 @@ const ModalEditUser = (props) => {
             image2: '',
             typeProduct: '',
             previewImg1: '',
-            previewImg2: ''
+            previewImg2: '',
+            bannerProduct: '',
+            bannerPrev: '',
+
         })
     }
 
@@ -37,7 +39,9 @@ const ModalEditUser = (props) => {
         image2: '',
         typeProduct: '',
         previewImg1: '',
-        previewImg2: ''
+        previewImg2: '',
+        bannerProduct: '',
+        bannerPrev: '',
     })
 
     useEffect(() => {
@@ -54,6 +58,8 @@ const ModalEditUser = (props) => {
                 typeProduct: dataProductEdit.typeProduct,
                 previewImg1: dataProductEdit.image1,
                 previewImg2: dataProductEdit.image2,
+                bannerProduct: dataProductEdit.bannerProduct,
+                bannerPrev: dataProductEdit.bannerProduct,
             })
         }
     }, [dataProductEdit])
@@ -99,6 +105,20 @@ const ModalEditUser = (props) => {
                 ...formUpdate,
                 [event.target.name]: (reader.result),
                 [event.target.name === 'image1' ? 'previewImg1' : 'previewImg2']: (URL.createObjectURL(event.target.files[0])),
+
+            }); // Base64 string
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+    const handleOnchangeBanner = (event) => {
+
+        if (event.target && event.target.files && event.target.files[0]) {
+
+            const reader = new FileReader();
+            reader.onload = () => setFormUpdate({
+                ...formUpdate,
+                [event.target.name]: (reader.result),
+                bannerPrev: (URL.createObjectURL(event.target.files[0])),
 
             }); // Base64 string
             reader.readAsDataURL(event.target.files[0]);
@@ -207,8 +227,8 @@ const ModalEditUser = (props) => {
                                     <div className="form-group col-2  my-2 ">
                                         <label htmlFor="imgUpdate1" className="img-user" style={{
                                             border: '1px solid',
-                                            margin: '25px 30px', cursor: 'pointer',
-                                            width: '120px', borderRadius: '30px',
+                                            margin: '25px 20px', cursor: 'pointer',
+                                            width: '120px', borderRadius: '10px',
                                             textAlign: 'center', padding: '6px',
                                         }}>{formUpdate['previewImg1'] ? 'Switch Image' : 'Add Image'}</label>
                                         <input className="form-control "
@@ -244,8 +264,8 @@ const ModalEditUser = (props) => {
                                     <div className="form-group col-2 my-2">
                                         <label htmlFor="imgUpdate2" className="img-user" style={{
                                             border: '1px solid',
-                                            margin: '25px 30px', cursor: 'pointer',
-                                            width: '120px', borderRadius: '30px',
+                                            margin: '25px 40px', cursor: 'pointer',
+                                            width: '120px', borderRadius: '10px',
                                             textAlign: 'center', padding: '6px',
                                         }}>{formUpdate['previewImg2'] ? 'Switch Image' : 'Add Image'}</label>
                                         <input className="form-control "
@@ -269,6 +289,46 @@ const ModalEditUser = (props) => {
                                                             ...formUpdate,
                                                             image2: '',
                                                             previewImg2: ''
+                                                        })}
+
+                                                    >X</span>
+                                                </div>
+                                                :
+                                                ''
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div >
+                                    <div className="form-group col-2 my-2">
+                                        <label htmlFor="bannerUp" className="img-user" style={{
+                                            border: '1px solid',
+                                            margin: '25px 40px', cursor: 'pointer',
+                                            width: '120px', borderRadius: '10px',
+                                            textAlign: 'center', padding: '6px',
+                                        }}>{formUpdate['bannerProduct'] ? 'Switch Image' : 'Add Image'}</label>
+                                        <input className="form-control "
+                                            name="bannerProduct"
+                                            type="file"
+                                            id="bannerUp"
+                                            hidden
+                                            onChange={(event) => handleOnchangeBanner(event)}
+                                        />
+                                        <div className="img-prev mx-4 " >
+
+                                            {formUpdate['bannerPrev']
+
+                                                ?
+                                                <div className="d-flex ">
+                                                    <img style={{ height: '170px', width: '150px' }} src={formUpdate['bannerPrev']}
+
+                                                    />
+                                                    <span style={{ marginLeft: '10px', backgroundColor: ' rgba(176, 173, 173, 0.67)', padding: '5px', cursor: 'pointer', height: 'fit-content', }}
+                                                        onClick={() => setFormUpdate({
+                                                            ...formUpdate,
+                                                            bannerProduct: '',
+                                                            bannerPrev: ''
                                                         })}
 
                                                     >X</span>

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 
 };
 const AdminReducer = (state = INITIAL_STATE, action) => {
-    // console.log(action)
+    console.log(action)
     switch (action.type) {
 
         case actiontypes.FETCH_DATA_TYPE_SUCCESS:

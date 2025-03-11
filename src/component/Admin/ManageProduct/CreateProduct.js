@@ -14,7 +14,9 @@ const CreateProduct = (props) => {
         image2: '',
         typeProduct: '',
         previewImg1: '',
-        previewImg2: ''
+        previewImg2: '',
+        bannerProduct: '',
+        bannerPrev: '',
     })
     const [errors, setErrors] = useState({
         nameProduct: '',
@@ -25,7 +27,10 @@ const CreateProduct = (props) => {
         image1: '',
         image2: '',
         typeProduct: '',
+        bannerProduct: '',
+        bannerPrev: '',
     })
+
     const [dataSelectType, setDataSelectType] = useState({})
     useEffect(() => {
         if (listTypeProduct) {
@@ -170,7 +175,20 @@ const CreateProduct = (props) => {
             reader.readAsDataURL(event.target.files[0]);
         }
     }
+    const handleOnchangeBanner = (event) => {
 
+        if (event.target && event.target.files && event.target.files[0]) {
+
+            const reader = new FileReader();
+            reader.onload = () => setFormCreate({
+                ...formCreate,
+                [event.target.name]: (reader.result),
+                bannerPrev: (URL.createObjectURL(event.target.files[0])),
+
+            }); // Base64 string
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
     return (
         <>
             <div className="create-Product container my-5">
@@ -304,6 +322,46 @@ const CreateProduct = (props) => {
                                             ...formCreate,
                                             image2: '',
                                             previewImg2: ''
+                                        })}
+
+                                    >X</span>
+                                </div>
+                                :
+                                ''
+                            }
+
+
+
+                        </div>
+                    </div>
+                    <div className="form-group  col-2 my-2" style={{ textAlign: 'end' }}>
+                        <label htmlFor="imgBanner" className="img-user" style={{
+                            border: '1px solid',
+                            margin: '25px 20px', cursor: 'pointer',
+                            width: '120px', borderRadius: '30px',
+                            textAlign: 'center', padding: '6px',
+                        }}>{formCreate['previewImg2'] ? 'Switch Image' : 'Add Image'}</label>
+                        <input className="form-control "
+                            name="bannerProduct"
+                            type="file"
+                            id="imgBanner"
+                            hidden
+                            onChange={(event) => handleOnchangeBanner(event)}
+                        />
+                        <div className="img-prev mx-5 "  >
+
+                            {formCreate['bannerPrev']
+
+                                ?
+                                <div className="d-flex ">
+                                    <img style={{ height: '170px', width: '150px' }} src={formCreate['bannerPrev']}
+
+                                    />
+                                    <span style={{ marginLeft: '10px', backgroundColor: ' rgba(176, 173, 173, 0.67)', padding: '5px', cursor: 'pointer', height: 'fit-content', }}
+                                        onClick={() => setFormCreate({
+                                            ...formCreate,
+                                            bannerProduct: '',
+                                            bannerPrev: ''
                                         })}
 
                                     >X</span>

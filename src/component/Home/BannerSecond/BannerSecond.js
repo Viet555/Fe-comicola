@@ -1,25 +1,43 @@
 import './BannerSecond.scss'
 import bannerS1 from '../../../asset/newBanner/Tiem-ca-phe-sua-da_2000x2000.webp'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { ApitfetchAllBannerByAction } from '../../../service/ApiService'
 const BannerSecond = () => {
+    const [dataBannerSecond, setDataBannerSecond] = useState('')
+    const FetchAllBannerSecondByType = async () => {
+        let response = await ApitfetchAllBannerByAction('Bsecond')
+        if (response && response.EC === 0) {
+
+            setDataBannerSecond(response.data)
+        }
+        else {
+            toast.error(response.MES)
+        }
+    }
+    useEffect(() => {
+        FetchAllBannerSecondByType()
+    }, [])
+
     return (
         <>
             <div className="BannerSecond-container container">
-
                 <div className="left-banner">
-                    <img src={bannerS1} />
+                    <img src={dataBannerSecond[0]?.bannerMidle[0]?.image} />
                     <div className='info-banner'>
-                        <span className='title'> Tiệm Cà Phê Sữa Đá</span>
-                        <span className='text-banner'> Lấy ý tưởng từ món đồ uống quen thuộc của người Việt – Cà phê sữa đá, kết hợp với tạo hình của các nhân vật truyện tranh Việt Nam nổi tiếng.</span>
+                        <span className='title'> {dataBannerSecond[0]?.bannerMidle[0]?.name}</span>
+                        <span className='text-banner'> {dataBannerSecond[0]?.bannerMidle[0]?.productId.desProduct}</span>
                     </div>
                 </div>
 
                 <div className="right-banner">
-                    <img src={bannerS1} />
+                    <img src={dataBannerSecond[1]?.bannerMidle[0]?.image} />
                     <div className='info-banner'>
-                        <span className='title'> Tiệm Cà Phê Sữa Đá</span>
-                        <span className='text-banner'> Lấy ý tưởng từ món đồ uống quen thuộc của người Việt – Cà phê sữa đá, kết hợp với tạo hình của các nhân vật truyện tranh Việt Nam nổi tiếng.</span>
+                        <span className='title'>  {dataBannerSecond[1]?.bannerMidle[0]?.name}</span>
+                        <span className='text-banner'>{dataBannerSecond[1]?.bannerMidle[0]?.productId.desProduct}</span>
                     </div>
                 </div>
+
             </div>
         </>
     )

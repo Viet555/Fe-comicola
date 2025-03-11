@@ -18,7 +18,7 @@ const ManageProducts = () => {
     const [isShow, setIsShow] = useState(false)
     const [dataProductEdit, setDataProductEdit] = useState()
     const limit = 6
-    console.log(type)
+
     useEffect(() => {
         dispatch(action.fetchAllTypeProduct())
     }, [])

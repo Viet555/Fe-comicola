@@ -25,10 +25,10 @@ export const fetchAllTypeProduct = () => {
         }
     }
 }
-export const fetchAllProduct = (action) => {
+export const fetchAllProduct = (type, limit) => {
     return async (dispatch, getState) => {
 
-        let data = await ApiFetchAllProductByType(action)
+        let data = await ApiFetchAllProductByType(type, limit)
         try {
             if (data && data.EC === 0) {
                 dispatch({

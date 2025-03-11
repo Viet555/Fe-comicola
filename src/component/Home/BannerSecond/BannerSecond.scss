@@ -2,13 +2,14 @@
     display: flex;
     width: 90%;
     height: 35em;
-    padding-top: 30px;
+    margin-top: 60px;
     justify-content: center;
-    gap: 30px;
+    gap: 50px;
     position: relative;
 
     img {
         height: 100%;
+        width: 550px;
     }
 
     .left-banner {
@@ -17,7 +18,7 @@
         .info-banner {
             padding: 15px;
             height: 110px;
-            width: 102%;
+            width: 106%;
             background-color: black;
             color: white;
             display: flex;
@@ -27,9 +28,9 @@
             opacity: 0;
 
             .title {
-                width: fit-content;
+                margin: 0 auto;
+                text-align: center;
                 font-size: 25px;
-                margin-left: 130px;
                 border-bottom: 1px solid white;
             }
 
@@ -75,7 +76,7 @@
         .info-banner {
             padding: 15px;
             height: 110px;
-            width: 102%;
+            width: 106%;
             background-color: black;
             color: white;
             display: flex;
@@ -85,11 +86,10 @@
             opacity: 0;
 
             .title {
-                width: fit-content;
+                margin: 0 auto;
+                text-align: center;
                 font-size: 25px;
-                margin-left: 130px;
                 border-bottom: 1px solid white;
-
             }
 
             .text-banner {

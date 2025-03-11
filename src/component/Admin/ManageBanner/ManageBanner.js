@@ -17,7 +17,7 @@ const ManageBanner = () => {
     const dispatch = useDispatch()
     const dataAllProduct = useSelector(state => state.admin.allProduct)
     useEffect(() => {
-        dispatch(action.fetchAllProduct())
+        dispatch(action.fetchAllProduct('', ''))
         FetchAllBannerFirstByType()
         FetchAllBannerSecondtByType()
     }, [])
@@ -81,7 +81,7 @@ const ManageBanner = () => {
                 ...formCreateBanner,
                 productId: data._id,
                 name: data.nameProduct,
-                image: data.image1
+                image: data.bannerProduct
             })
             setShow(!show)
         }
@@ -134,7 +134,7 @@ const ManageBanner = () => {
             ...formEditBanner,
             name: dataEdit?.nameProduct,
             productId: dataEdit?._id,
-            image: dataEdit?.image1,
+            image: dataEdit?.bannerProduct,
         })
     }
     const handleClose = () => {
@@ -313,7 +313,7 @@ const ManageBanner = () => {
                                             <label >{item.nameProduct}</label>
                                         </div>
                                         <div className='form-group img-product  my-3'>
-                                            <img src={item.image1} />
+                                            <img src={item.bannerProduct} />
                                         </div>
                                         <div className='btn-select'>
                                             <button className='btn btn-info'
@@ -354,7 +354,7 @@ const ManageBanner = () => {
                                             <label >{item.nameProduct}</label>
                                         </div>
                                         <div className='form-group img-product  my-3'>
-                                            <img src={item.image1} />
+                                            <img src={item.bannerProduct} />
                                         </div>
                                         <div className='btn-select'>
                                             <button className='btn btn-info'

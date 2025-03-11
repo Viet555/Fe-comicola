@@ -32,8 +32,8 @@ const ApiUpdateProduct = (dataUpdate) => {
     return axios.put(`/api/Update-Product`, dataUpdate)
 }
 
-const ApiFetchAllProductByType = (type) => {
-    return axios.get(`/fetchAllProduct-byType?action=${type}`,)
+const ApiFetchAllProductByType = (type, limit) => {
+    return axios.get(`/fetchAllProduct-byType?type=${type}&limit=${limit}`,)
 }
 const ApiCreateNewBanner = (dataBanner) => {
     return axios.post(`/api/Create-banner`, dataBanner)

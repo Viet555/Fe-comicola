@@ -1,7 +1,25 @@
 
 import './NewProduct.scss'
-import product from '../../../asset/newBanner/Hesman_Comishop_1.webp'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import * as action from '../../Store/export'
 const NewProduct = () => {
+
+    const dispatch = useDispatch()
+    let dataProduct = useSelector(state => state.admin.allProduct)
+    useEffect(() => {
+        dispatch(action.fetchAllProduct('', 8))
+
+    }, [])
+    useEffect(() => {
+        if (dataProduct && dataProduct.length > 0) {
+            setDataNewProduct(dataProduct)
+        }
+    }, [dataProduct])
+
+    const [dataNewproduct, setDataNewProduct] = useState()
+    const [hoverImg, setHoverImg] = useState(false)
+    console.log('checkdata', dataNewproduct)
     return (
         <>
             <div className="container-NewProduct ">
@@ -10,38 +28,36 @@ const NewProduct = () => {
                     <span className="title-header2">Sản Phẩm Mới</span>
                 </div>
                 <div className='container '>
-                    <div className='NewProduct-content col-12 '>
-                        <div className='content col-3' >
-                            <img src={product} />
-                            <div className='info-product'>
-                                <span className='name-pro'>abcd-xuz</span>
-                                <span className='price'>555d</span>
 
-                            </div>
-                            <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
-                        </div>
-                        <div className='content col-3' >
-                            <img src={product} />
-                            <div className='info-product'>
-                                <span className='name-pro'>abcd-xuz</span>
-                                <span className='price'>555d</span>
-                            </div>
-                        </div>
-                        <div className='content col-3' >
-                            <img src={product} />
-                            <div className='info-product'>
-                                <span className='name-pro'>abcd-xuz</span>
-                                <span className='price'>555d</span>
-                            </div>
-                        </div>
-                        <div className='content col-3' >
-                            <img src={product} />
-                            <div className='info-product'>
-                                <span className='name-pro'>abcd-xuz</span>
-                                <span className='price'>555d</span>
-                            </div>
-                        </div>
+                    <div className='NewProduct-content col-12 '>
+
+                        {dataNewproduct && dataNewproduct.length > 0 &&
+                            dataNewproduct.map((item, index) => {
+                                return (
+                                    <div className='content col-3' key={{ index }} >
+                                        <img
+                                            src={item.image1}
+                                            alt={item.nameProduct}
+                                            onMouseOver={(e) => {
+                                                if (item.image2) e.target.src = item.image2;
+                                            }}
+                                            onMouseOut={(e) => {
+                                                if (item.image2) e.target.src = item.image1;
+                                            }}
+                                        />
+                                        {/* <span className='onsale'>cc</span> */}
+                                        <div className='info-product'>
+                                            <span className='name-pro'>{item.nameProduct}</span>
+                                            <span className='price'>{item.count}đ</span>
+
+                                        </div>
+                                        <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
+                                    </div>
+                                )
+                            })}
                     </div>
+
+
                     <div className='all-product'>Xem toàn bộ sản phẩm</div>
                 </div>
             </div>

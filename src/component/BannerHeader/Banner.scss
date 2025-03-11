@@ -6,7 +6,8 @@
 
     .banner-left {
         width: 50%;
-
+        position: relative;
+        overflow: hidden;
 
         img {
             height: 100%;
@@ -24,18 +25,25 @@
         &:hover {
             cursor: pointer;
         }
+
+        &:hover .title-banner {
+            opacity: 1;
+        }
+
     }
 
     .banner-right {
         width: 50%;
         height: 100%;
 
+
         .Content-up {
             height: 50%;
+            position: relative;
+            overflow: hidden;
 
             img {
                 height: 100%;
-                position: relative;
                 width: 100%;
                 transform: scale(1);
                 /* Giữ ảnh ở kích thước ban đầu */
@@ -50,6 +58,12 @@
                     /* Phóng to nhẹ ảnh khi hover */
                 }
             }
+
+            &:hover .title-banner {
+                transition: .3s;
+                opacity: 1;
+            }
+
         }
 
         .Content-down {
@@ -57,16 +71,29 @@
             display: flex;
 
             .child-right {
+                position: relative;
                 width: 50%;
+                overflow: hidden;
+
+                &:hover .title-banner {
+                    opacity: 1;
+                }
             }
 
             .child-left {
+                position: relative;
                 width: 50%;
+                overflow: hidden;
+
+                &:hover .title-banner {
+                    opacity: 1;
+                }
+
+
             }
 
             img {
                 height: 100%;
-                position: relative;
                 width: 100%;
                 transform: scale(1);
                 /* Giữ ảnh ở kích thước ban đầu */
@@ -81,8 +108,83 @@
                     /* Phóng to nhẹ ảnh khi hover */
                 }
             }
+
         }
 
 
     }
+
+    .title-banner {
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        /* Căn giữa theo cả chiều ngang và chiều dọc */
+        transform: translate(-50%, -50%);
+        /* Căn giữa theo cả chiều ngang và chiều dọc */
+        font-size: 27px;
+        color: white;
+        font-weight: 600;
+        // border-bottom: 1px solid white;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+        display: -webkit-box;
+        /* Sử dụng định dạng khối linh hoạt */
+        -webkit-box-orient: vertical;
+        /* Hướng khối theo chiều dọc */
+        -webkit-line-clamp: 2;
+        /* Giới hạn hiển thị tối đa 2 dòng */
+        overflow: hidden;
+        /* Ẩn phần nội dung vượt quá */
+        text-overflow: ellipsis;
+        /* Thêm dấu "..." ở cuối */
+        word-break: break-word;
+
+        /* Bẻ từ nếu quá dài */
+        .line {
+            width: 100%;
+            height: 1px;
+            min-width: 10%;
+            background: #eadedeef;
+        }
+
+        .cart {
+
+            padding-top: 5px;
+            text-align: center;
+            font-size: 22px;
+            color: white;
+
+        }
+    }
+
+
+
+
+
+    .banner-left:hover::after,
+    .banner-right .Content-up:hover::after,
+    .banner-right .Content-down .child-left:hover::after,
+    .banner-right .Content-down .child-right:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+        /*  chặn sự kiện hover */
+    }
+}
+
+.banner-left .cart:hover::after,
+.banner-right .Content-up .cart:hover::after,
+.banner-right .Content-down .child-left .cart:hover::after,
+.banner-right .Content-down .child-right .cart:hover::after {
+
+    opacity: 1;
 }
