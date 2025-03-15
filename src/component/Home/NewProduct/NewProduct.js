@@ -3,8 +3,9 @@ import './NewProduct.scss'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../Store/export'
+import { useNavigate } from 'react-router-dom'
 const NewProduct = () => {
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     let dataProduct = useSelector(state => state.admin.allProduct)
     useEffect(() => {
@@ -19,7 +20,7 @@ const NewProduct = () => {
 
     const [dataNewproduct, setDataNewProduct] = useState()
     const [hoverImg, setHoverImg] = useState(false)
-    console.log('checkdata', dataNewproduct)
+
     return (
         <>
             <div className="container-NewProduct ">
@@ -34,7 +35,9 @@ const NewProduct = () => {
                         {dataNewproduct && dataNewproduct.length > 0 &&
                             dataNewproduct.map((item, index) => {
                                 return (
-                                    <div className='content col-3' key={{ index }} >
+                                    <div className='content col-3' key={{ index }}
+                                        onClick={() => navigate(`/DetailProduct/${item._id}`)}
+                                    >
                                         <img
                                             src={item.image1}
                                             alt={item.nameProduct}

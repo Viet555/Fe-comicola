@@ -1,17 +1,18 @@
 import './Header.scss'
 import logoShop from '../../asset/Comi_shop.png'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../Store/export'
 const Headerr = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const authen = useSelector(state => state.user)
     const userInfor = useSelector(state => state.user.account)
     return (
         <>
             <div className="main-container">
                 <div className="content-left">
-                    <img src={logoShop}></img>
+                    <img src={logoShop} onClick={() => navigate('/')} style={{ cursor: 'pointer' }} ></img >
                 </div>
                 <div className="content-center">
                     <span> <NavLink to='/' className='nav-link'>Trang chủ</NavLink></span>

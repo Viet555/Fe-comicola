@@ -21,7 +21,7 @@ const CreateProduct = (props) => {
     const [errors, setErrors] = useState({
         nameProduct: '',
         count: '',
-        note: '',
+        // note: '',
         desProduct: '',
         code: '',
         image1: '',
@@ -112,11 +112,11 @@ const CreateProduct = (props) => {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-            return false; // Không hợp lệ
+            return false;
         }
 
         setErrors({}); // Xóa lỗi nếu hợp lệ
-        return true; // Hợp lệ
+        return true;
     };
     const handleOnchange = (event) => {
         setFormCreate({

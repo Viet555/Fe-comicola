@@ -6,8 +6,8 @@
         padding-top: 40px;
 
         .title-header1 {
-            font-size: 46px;
-            color: rgba(89, 94, 94, 0.564);
+            font-size: 60px;
+            color: rgba(89, 94, 94, 0.241);
         }
 
         .title-header2 {
@@ -26,6 +26,7 @@
 
         .content {
             position: relative;
+            margin-top: 35px;
 
             img {
                 position: relative;
@@ -54,11 +55,36 @@
                 flex-direction: column;
                 text-align: center;
                 transition: .3s;
+
+                .name-pro {
+
+                    font-size: 17px;
+                    // border-bottom: 1px solid white;
+                    transition: opacity 0.5s ease;
+
+                    display: -webkit-box;
+                    /* Sử dụng định dạng khối linh hoạt */
+                    -webkit-box-orient: vertical;
+                    /* Hướng khối theo chiều dọc */
+                    -webkit-line-clamp: 2;
+                    /* Giới hạn hiển thị tối đa 2 dòng */
+                    overflow: hidden;
+                    /* Ẩn phần nội dung vượt quá */
+                    text-overflow: ellipsis;
+                    /* Thêm dấu "..." ở cuối */
+                    word-break: break-word;
+                }
+
+                .price {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
             }
 
             .add-cart {
+
                 text-align: center;
-                top: 95%;
+                top: 94%;
                 opacity: -1;
                 padding: 10px;
                 width: 60%;

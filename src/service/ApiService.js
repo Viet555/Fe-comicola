@@ -47,8 +47,15 @@ const ApiDeleteBanner = (id) => {
 const ApiUpdateBanner = (dataUpdate) => {
     return axios.put(`/api/update-banner`, dataUpdate)
 }
+const GetDetailProduct = (id) => {
+    return axios.get(`/getAproduct-Detail?id=${id}`)
+}
+const handleMarkdown = (data) => {
+    return axios.post(`/Create-Update-Markdown`, data)
+}
+
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
-    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner
+    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown
 } 

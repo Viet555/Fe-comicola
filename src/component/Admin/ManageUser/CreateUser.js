@@ -15,7 +15,7 @@ const CreateUser = (props) => {
         gender: '',
         address: '',
         image: '',
-        RoleId: '',
+        roleId: '',
         imagePreview: ''
     })
     const [errors, setErrors] = useState({
@@ -26,7 +26,7 @@ const CreateUser = (props) => {
         gender: '',
         address: '',
         image: '',
-        RoleId: '',
+        roleId: '',
     })
     const isValidInput = () => {
         console.log('check form data ', formData)
@@ -107,7 +107,7 @@ const CreateUser = (props) => {
                     gender: '',
                     address: '',
                     image: '',
-                    RoleId: '',
+                    roleId: '',
                     imagePreview: ''
 
                 })
@@ -197,12 +197,12 @@ const CreateUser = (props) => {
                     <div className="form-group col-3 my-2">
                         <label>Role</label>
                         <Select
-                            name='RoleId'
+                            name='roleId'
                             placeholder={'Choosee role'}
                             options={selectRole}
                             onChange={(event) => setFormData({
                                 ...formData,
-                                RoleId: event.label
+                                roleId: event.label
                             })}
                         />
 

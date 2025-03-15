@@ -32,7 +32,6 @@
             position: relative;
             margin-top: 35px;
 
-
             img {
 
                 position: relative;
@@ -90,7 +89,7 @@
             .add-cart {
 
                 text-align: center;
-                top: 94%;
+                top: 92%;
                 opacity: -1;
                 padding: 10px;
                 width: 60%;
@@ -122,9 +121,7 @@
             cursor: pointer;
         }
 
-        &:hover {
-            cursor: pointer;
-        }
+
     }
 
     .all-product {
