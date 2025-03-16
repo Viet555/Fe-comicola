@@ -53,9 +53,12 @@ const GetDetailProduct = (id) => {
 const handleMarkdown = (data) => {
     return axios.post(`/Create-Update-Markdown`, data)
 }
+const AllProductBySort = (sort) => {
 
+    return axios.get(`/fetchAllProduct-bySort?sort=${sort}`,)
+}
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
-    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown
+    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown, AllProductBySort
 } 

@@ -107,7 +107,6 @@ const DetailProduct = () => {
                     {data && data.markdowns && data.markdowns[0]?.contentHTML &&
                         <>
                             <span >Giới thiệu nội dung</span>
-
                             <div className='text-markdown' dangerouslySetInnerHTML={{ __html: data.markdowns[0]?.contentHTML }}></div>
                         </>
                     }

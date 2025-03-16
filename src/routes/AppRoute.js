@@ -7,6 +7,7 @@ import ManageProducts from "../component/Admin/ManageProduct/ManageProducts";
 import ManageBanner from "../component/Admin/ManageBanner/ManageBanner";
 import DetailProduct from "../component/DetailProduct.js/DetailProduct";
 import MarkdownProduct from "../component/Admin/MarkDownProduct/MarkdownProduct";
+import ViewAllProduct from "../component/ViewAllProduct/ViewAllProduct";
 const AppRoute = () => {
     return (
         <>
@@ -21,6 +22,8 @@ const AppRoute = () => {
 
                 <Route path="/DetailProduct/:id" element={<DetailProduct />} />
                 <Route path="/ManageMarkdown" element={<MarkdownProduct />} />
+
+                <Route path="/viewAllproDuct" element={<ViewAllProduct />} />
             </Routes>
         </>
     )

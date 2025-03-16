@@ -1,4 +1,4 @@
-import { ApiFetchAllProductByType, ApitfetchAllBannerByAction, fetchAllDataType, getDataProductByType, GetDetailProduct } from "../../../service/ApiService"
+import { AllProductBySort, ApiFetchAllProductByType, ApitfetchAllBannerByAction, fetchAllDataType, getDataProductByType, GetDetailProduct } from "../../../service/ApiService"
 import actiontypes from "./ActionType"
 
 export const fetchAllTypeProduct = () => {
@@ -69,6 +69,31 @@ export const getDataDetailProductRedux = (id) => {
         } catch (e) {
             dispatch({
                 type: actiontypes.GET_DATA_DETAIL_PRODUCT_FAIL,
+            })
+            console.log('ERR', e)
+        }
+    }
+}
+export const getdataProductBysort = (sort) => {
+    return async (dispatch, getState) => {
+
+        let dataSort = await AllProductBySort(sort)
+        try {
+
+            if (dataSort && dataSort.EC === 0) {
+                dispatch({
+                    type: actiontypes.GET_DATA_PRODUCT_BY_SORT_SUCCESS,
+                    data: dataSort.dataSort
+                })
+            } else {
+                dispatch({
+                    type: actiontypes.GET_DATA_PRODUCT_BY_SORT_FAIL,
+
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actiontypes.GET_DATA_PRODUCT_BY_SORT_FAIL,
             })
             console.log('ERR', e)
         }

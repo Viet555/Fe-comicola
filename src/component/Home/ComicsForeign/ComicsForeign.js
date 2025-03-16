@@ -2,11 +2,13 @@ import '../ComicsViet/ComicsViet.scss'
 import product from '../../../asset/Banner/MDDS_Comishop_0.webp'
 import { useEffect, useState } from 'react'
 import { ApiFetchAllProductByType } from '../../../service/ApiService'
+import { useNavigate } from 'react-router-dom'
 const ComicsForeign = () => {
 
     useEffect(() => {
         GetdataProductByType()
     }, [])
+    const navigate = useNavigate()
     const [datacomicForeign, setDataComicForeign] = useState()
     const GetdataProductByType = async () => {
         let res = await ApiFetchAllProductByType("Foreign comics", '4')
@@ -30,7 +32,8 @@ const ComicsForeign = () => {
                             datacomicForeign.map((item) => {
 
                                 return (
-                                    <div className='content col-3' >
+                                    <div className='content col-3'
+                                        onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}>
                                         <img src={item.image1}
                                             alt={item.nameProduct}
                                             onMouseOver={(e) => {

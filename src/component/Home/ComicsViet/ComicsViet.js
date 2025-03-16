@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../Store/export'
 import { ApiFetchAllProductByType } from '../../../service/ApiService'
+import { useNavigate } from 'react-router-dom'
 const ComicsViet = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         GetdataProductByType()
     }, [])
+    const navigate = useNavigate()
     const [datacomicViet, setDataComicViet] = useState()
     const GetdataProductByType = async () => {
         let res = await ApiFetchAllProductByType("Vietnamese comics", 8)
@@ -32,7 +34,8 @@ const ComicsViet = () => {
                         {datacomicViet && datacomicViet.length > 0 &&
                             datacomicViet.map((item) => {
                                 return (
-                                    <div className='content col-3' >
+                                    <div className='content col-3'
+                                        onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}>
                                         <img src={item.image1}
                                             alt={item.nameProduct}
                                             onMouseOver={(e) => {

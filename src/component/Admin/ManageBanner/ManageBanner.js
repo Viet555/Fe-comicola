@@ -91,7 +91,10 @@ const ManageBanner = () => {
     }
 
     const handleCreateBanner = async () => {
-
+        if (!formCreateBanner.action) {
+            toast.error('Please choose action')
+            return;
+        }
         let res = await ApiCreateNewBanner(formCreateBanner)
         if (res && res.EC === 0) {
             console.log(res)

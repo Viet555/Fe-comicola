@@ -2,8 +2,10 @@ import actiontypes from "../Action/ActionType";
 const INITIAL_STATE = {
     typeProduct: [],
     allProduct: [],
-    detailProduct: []
+    detailProduct: [],
+    dataProductSort: []
 };
+
 const AdminReducer = (state = INITIAL_STATE, action) => {
     console.log(action)
     switch (action.type) {
@@ -32,16 +34,28 @@ const AdminReducer = (state = INITIAL_STATE, action) => {
                 allProduct: []
             };
         case actiontypes.GET_DATA_DETAIL_PRODUCT_SUCCESS:
+
             return {
                 ...state,
-                detailProduct: action.data
+                detailProduct: action.data,
+
             };
         case actiontypes.GET_DATA_DETAIL_PRODUCT_FAIL:
             return {
                 ...state,
                 detailProduct: []
             };
-
+        //Sort
+        case actiontypes.GET_DATA_PRODUCT_BY_SORT_SUCCESS:
+            return {
+                ...state,
+                dataProductSort: action.data
+            };
+        case actiontypes.GET_DATA_PRODUCT_BY_SORT_FAIL:
+            return {
+                ...state,
+                dataProductSort: []
+            };
         default: // need this for default case
             return state
 

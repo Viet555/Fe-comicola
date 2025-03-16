@@ -3,6 +3,7 @@ import logoShop from '../../asset/Comi_shop.png'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../Store/export'
+import { NavDropdown } from 'react-bootstrap';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,13 +20,26 @@ const Headerr = () => {
                     <span>Sản phẩm</span>
 
                     <span className={authen && authen.isauthentic === true ? 'text-primary' : ''}> <NavLink to={authen && authen.isauthentic === true ? '/ ' : '/login'} className='nav-link'>{userInfor && userInfor.email ? `hello ${userInfor.email}` : 'Sign In / Register'}</NavLink></span>
+                    {authen && authen.isauthentic === true &&
+                        <span className='btn-logout'>
+                            <i
+                                onClick={() => dispatch((action.UserLogout()))}
+                                className="fa-solid fa-right-from-bracket" style={{ fontSize: '15px' }}></i>
+                        </span>
+                    }
 
                 </div>
                 <div className="content-right">
                     {userInfor && userInfor.roleId === 'admin' ?
                         <div className='d-flex '>
                             <span> <NavLink to='/ManageUser' className='nav-link SetupBut' >Manage User</NavLink></span>
-                            <span> <NavLink to='/ManageProduct' className='nav-link SetupBut'>Manage Products</NavLink></span>
+
+
+                            <NavDropdown title="Product Manage" className='SetupBut navdrop-header' >
+                                <NavLink to='/ManageProduct' className='nav-link nav-link-drop '>Manage Products</NavLink>
+                                <NavLink to='/ManageMarkdown' className='nav-link nav-link-drop'>Manage Markdown</NavLink>
+                            </NavDropdown>
+
                             <span> <NavLink to='/ManageBanner' className='nav-link SetupBut'>Manage Banners</NavLink></span>
                         </div>
                         :
@@ -35,13 +49,6 @@ const Headerr = () => {
                             <span> <i className="fa-solid fa-cart-shopping"></i></span>
                         </div>
 
-                    }
-                    {authen && authen.isauthentic === true &&
-                        <span>
-                            <i
-                                onClick={() => dispatch((action.UserLogout()))}
-                                className="fa-solid fa-right-from-bracket"></i>
-                        </span>
                     }
 
                 </div>

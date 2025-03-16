@@ -148,7 +148,7 @@ const ModalEditUser = (props) => {
                     backdrop="static"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Edit User</Modal.Title>
+                        <Modal.Title>Edit Product</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div className='modal-Edit col-12 row '>
@@ -307,7 +307,7 @@ const ModalEditUser = (props) => {
                                             margin: '25px 40px', cursor: 'pointer',
                                             width: '120px', borderRadius: '10px',
                                             textAlign: 'center', padding: '6px',
-                                        }}>{formUpdate['bannerProduct'] ? 'Switch Image' : 'Add Image'}</label>
+                                        }}>{formUpdate['bannerProduct'] ? 'Switch Image' : 'Add Banner'}</label>
                                         <input className="form-control "
                                             name="bannerProduct"
                                             type="file"

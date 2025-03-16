@@ -1,39 +1,55 @@
-
-import './NewProduct.scss'
-import { useEffect, useState } from 'react'
+import Select from 'react-select'
+import './ViewAllProduct.scss'
+import { NavLink, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
-import * as action from '../../Store/export'
-import { useNavigate } from 'react-router-dom'
-const NewProduct = () => {
-    const navigate = useNavigate()
+import * as action from '../Store/export'
+import { useEffect, useState } from 'react'
+import { sortOption } from '../../constants';
+const ViewAllProduct = () => {
     const dispatch = useDispatch()
-    let dataProduct = useSelector(state => state.admin.allProduct)
+    const navigate = useNavigate()
+    const [sort, SetSort] = useState('')
     useEffect(() => {
-        dispatch(action.fetchAllProduct('', 8))
+        dispatch(action.getdataProductBysort(sort))
 
-    }, [])
+    }, [sort])
     useEffect(() => {
-        if (dataProduct && dataProduct.length > 0) {
-            setDataNewProduct(dataProduct)
+        if (sortOption) {
+            SetSort(sortOption[0].value)
         }
-    }, [dataProduct])
-
-    const [dataNewproduct, setDataNewProduct] = useState()
-    const [hoverImg, setHoverImg] = useState(false)
-
+    }, [])
+    let ProductSort = useSelector(state => state.admin.dataProductSort)
+    const handleChangSort = (e) => {
+        SetSort(e.value)
+        console.log(sort)
+    }
     return (
         <>
-            <div className="container-NewProduct ">
-                <div className="title ">
-                    <span className="title-header">Sản Phẩm Mới</span>
-                    <span className="title-header2">Sản Phẩm Mới</span>
+            <div className="view-all-container container">
+                <div className="content-header">
+                    <span className='home' ><NavLink to='/' className='nav-link'>Trang chủ/</NavLink></span>
+                    <span className='product-name mx-1'> ten</span>
                 </div>
-                <div className='container '>
+                <div className='sort-product '>
+                    <span className='text-view'>Hiển thi 1-28 của {ProductSort.length} kết quả</span>
+                    <span className='Sort-by'>
+                        <Select
 
+                            options={sortOption}
+                            defaultValue={sortOption[0]}
+                            onChange={(e) => handleChangSort(e)}
+                        />
+                        {/* <select >
+                            <option >qweqwewq</option>
+                            <option>qweqwewq</option>
+                        </select> */}
+                    </span>
+                </div>
+                <div className='content-viewAll'>
                     <div className='NewProduct-content col-12 '>
 
-                        {dataNewproduct && dataNewproduct.length > 0 &&
-                            dataNewproduct.map((item, index) => {
+                        {ProductSort && ProductSort.length > 0 &&
+                            ProductSort.map((item, index) => {
                                 return (
                                     <div className='content col-3' key={{ index }}
                                         onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}
@@ -60,13 +76,9 @@ const NewProduct = () => {
                             })}
                     </div>
 
-
-                    <div className='all-product'
-                        onClick={() => navigate('/ViewAllProduct', window.scroll(0, 0))}
-                    >Xem toàn bộ sản phẩm</div>
                 </div>
             </div>
         </>
     )
 }
-export default NewProduct
+export default ViewAllProduct

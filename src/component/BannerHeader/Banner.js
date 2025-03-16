@@ -27,10 +27,11 @@ const Banner = () => {
                 <div className="banner-left">
                     <img src={dataBannerFirst[0]?.bannerHeader[0]?.image}
 
-                        onClick={() => navigate(`/DetailProduct/${dataBannerFirst[0]?.bannerHeader[0]?.productId._id}`)}
+                        onClick={() => navigate(`/DetailProduct/${dataBannerFirst[0]?.bannerHeader[0]?.productId._id}`, window.scroll(0, 0))}
                     ></img>
                     <div className='title-banner d-flex'>
                         <span className=''>{dataBannerFirst[0]?.bannerHeader[0].name}</span>
+                        <span className='line'></span>
                         <span className='cart'><i className="fa-solid fa-cart-shopping"></i></span>
                     </div>
                 </div>

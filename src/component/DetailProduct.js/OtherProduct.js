@@ -18,7 +18,7 @@ const OtherProduct = (props) => {
                         dataProductOther.map((item, index) => {
                             return (
                                 <div className='footer-detail'
-                                    onClick={() => navigate(`/DetailProduct/${item._id}`)}
+                                    onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}
                                 >
 
                                     <div className='img-footer'>
