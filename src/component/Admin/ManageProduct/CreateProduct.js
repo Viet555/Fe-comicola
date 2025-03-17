@@ -204,7 +204,7 @@ const CreateProduct = (props) => {
                         {errors.nameProduct && <p style={{ color: 'red' }}>name Product has not been entered</p>}
                     </div>
                     <div className="form-group col-3  my-2">
-                        <label>Count</label>
+                        <label>Price</label>
                         <input className="form-control "
                             name='count'
                             value={formCreate['count']}

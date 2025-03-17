@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../Store/export'
 import _ from 'lodash'
 import OtherProduct from './OtherProduct'
+import { addProductInCart } from '../../service/ApiService'
+import { toast } from 'react-toastify'
 
 
 const DetailProduct = () => {
@@ -38,8 +40,13 @@ const DetailProduct = () => {
     }, [params.id])
     const data = useSelector(state => state.admin.detailProduct)
     const dataProductOther = useSelector(state => state.admin.allProduct)
+    const dataUseId = useSelector(state => state.user.account?.id)
+
     const [dataDetail, setDataDetail] = useState([])
     const [image, setImage] = useState(1)
+
+    const [userId, setUserId] = useState()
+    const [productId, setProductId] = useState()
     useEffect(() => {
         if (data && !_.isEmpty(data)) {
             setDataDetail(data)
@@ -49,7 +56,24 @@ const DetailProduct = () => {
         dispatch(action.fetchAllProduct('', 8))
 
     }, [])
+    useEffect(() => {
+        if (dataDetail && dataDetail._id) {
+            setProductId(dataDetail._id)
+        }
+    }, [dataDetail])
+    useEffect(() => {
+        if (dataUseId) {
+            setUserId(dataUseId)
+        }
+    }, [dataUseId])
+    const handleAddToCart = async () => {
+        dispatch(action.addProductcartByRedux(userId, productId, count))
 
+        // let res = await addProductInCart(userId, productId, count)
+        // if (res && res.EC !== 0) {
+        //     toast.error(res.MES)
+        // }
+    }
     return (
         <>
             <div className="DetailProduct-container">
@@ -82,7 +106,12 @@ const DetailProduct = () => {
                             <div className='amount-product'>
                                 <span className='amount-minus'> <i
 
-                                    onClick={() => setCount((count) => count - 1)}
+                                    onClick={() => {
+                                        if (count > 0) {
+                                            setCount((count) => count - 1)
+                                        }
+                                    }
+                                    }
                                     className="fa-solid fa-minus"></i></span>
                                 <span>{count}</span>
                                 <span className='amount-plus'><i
@@ -90,7 +119,9 @@ const DetailProduct = () => {
                                     className="fa-solid fa-plus"></i></span>
                             </div>
                             <div className='Cart'>
-                                <button className='add-to-cart'><i className="fa-solid fa-bag-shopping mx-2"></i>Thêm vào giỏ hàng</button>
+                                <button className='add-to-cart'
+                                    onClick={(e) => handleAddToCart()}
+                                ><i className="fa-solid fa-bag-shopping mx-2"></i>Thêm vào giỏ hàng</button>
                             </div>
 
                         </div>

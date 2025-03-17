@@ -12,11 +12,15 @@ const INITIAL_STATE = {
         gender: '',
         address: '',
 
+        id: ''
     },
+    cart: [],
     isauthentic: false
 };
 const userReducer = (state = INITIAL_STATE, action) => {
+    console.log(action)
     switch (action.type) {
+
         case actiontypes.USER_LOGIN_SUCCESS:
 
             return {
@@ -27,11 +31,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     email: action?.data?.data?.email,
                     image: action?.data?.data?.image,
                     roleId: action?.data?.data?.roleId,
-                    firstName: action?.data?.data?.firstname,
-                    lastName: action?.data?.data?.lastname,
+                    firstName: action?.data?.data?.firstName,
+                    lastName: action?.data?.data?.lastName,
                     gender: action?.data?.data?.gender,
                     address: action?.data?.data?.address,
+
+                    id: action?.data?.data?._id,
                 },
+                cart: action?.data?.data?.cart,
                 isauthentic: true
             };
 
@@ -47,6 +54,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 account: null,
                 isauthentic: false
             };
+        case actiontypes.ADD_PRODUCT_CART_SUCCESS:
+            return {
+                ...state,
+                cart: action.data,
+
+            };
+        case actiontypes.ADD_PRODUCT_CART_FAIL:
+            return {
+                ...state,
+                account: [],
+
+            };
+
         default: // need this for default case
             return state
 

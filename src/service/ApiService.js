@@ -57,8 +57,15 @@ const AllProductBySort = (sort) => {
 
     return axios.get(`/fetchAllProduct-bySort?sort=${sort}`,)
 }
+const addProductInCart = (userId, productId, quantity) => {
+    return axios.post(`/add-product-tocart`, { userId, productId, quantity })
+}
+const getProductCart = (userId,) => {
+    return axios.get(`/get-product-tocart?userId=${userId}`,)
+}
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
-    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown, AllProductBySort
+    ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown,
+    AllProductBySort, addProductInCart, getProductCart
 } 

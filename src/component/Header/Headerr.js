@@ -4,11 +4,22 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../Store/export'
 import { NavDropdown } from 'react-bootstrap';
+import ModelShowCart from './ModelShowCart';
+import { useEffect, useState } from 'react';
+import _ from 'lodash';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const authen = useSelector(state => state.user)
     const userInfor = useSelector(state => state.user.account)
+    const cartInfor = useSelector(state => state.user.cart)
+    const [showCart, setShowCart] = useState(false)
+    const [dataCart, setDataCart] = useState('')
+    useEffect(() => {
+        if (cartInfor && !_.isEmpty(cartInfor)) {
+            setDataCart(cartInfor)
+        }
+    }, [cartInfor])
     return (
         <>
             <div className="main-container">
@@ -43,16 +54,32 @@ const Headerr = () => {
                             <span> <NavLink to='/ManageBanner' className='nav-link SetupBut'>Manage Banners</NavLink></span>
                         </div>
                         :
-                        <div>
-                            <span> <i className="fa-solid fa-magnifying-glass"></i></span>
-                            <span><i className="fa-regular fa-user"></i></span>
-                            <span> <i className="fa-solid fa-cart-shopping"></i></span>
-                        </div>
+                        <>
+                            <div className='d-flex'>
+                                <span> <i className="fa-solid fa-magnifying-glass"></i></span>
+                                <span><i className="fa-regular fa-user"></i></span>
+                                <div className='hide-cart'>
+                                    <span className='cart-shop' onClick={() => setShowCart(!showCart)}><i className="fa-solid fa-cart-shopping"></i></span>
+                                    {cartInfor && cartInfor?.items?.length > 0 ?
+                                        <span className='hide-quantity'>{cartInfor?.items?.length}</span>
+                                        :
+                                        <span className='hide-quantity'>0</span>
+                                    }
+                                </div>
+                                <span>{cartInfor?.totalPrice ? cartInfor?.totalPrice + 'đ' : ''}</span>
+                            </div>
 
+                        </>
                     }
 
                 </div>
+                <ModelShowCart
+                    dataCart={dataCart}
+                    setShowCart={setShowCart}
+                    showCart={showCart}
+                />
             </div>
+
         </>
     )
 }

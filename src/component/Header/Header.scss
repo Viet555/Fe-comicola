@@ -55,6 +55,24 @@
                 transition: .3s;
             }
         }
+
+        .hide-cart {
+            position: relative;
+
+            .hide-quantity {
+                bottom: 40%;
+                left: 48%;
+                border-radius: 50%;
+                width: 15px;
+                height: 23px;
+                text-align: center;
+                background-color: rgb(224, 83, 83);
+                position: absolute;
+                color: rgb(224, 209, 209);
+                cursor: pointer;
+            }
+        }
+
     }
 }
 
