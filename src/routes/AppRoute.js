@@ -8,6 +8,7 @@ import ManageBanner from "../component/Admin/ManageBanner/ManageBanner";
 import DetailProduct from "../component/DetailProduct.js/DetailProduct";
 import MarkdownProduct from "../component/Admin/MarkDownProduct/MarkdownProduct";
 import ViewAllProduct from "../component/ViewAllProduct/ViewAllProduct";
+import PaymentProduct from "../component/Header/PaymentProduct";
 const AppRoute = () => {
     return (
         <>
@@ -24,6 +25,7 @@ const AppRoute = () => {
                 <Route path="/ManageMarkdown" element={<MarkdownProduct />} />
 
                 <Route path="/viewAllproDuct" element={<ViewAllProduct />} />
+                <Route path="/Payment-product" element={<PaymentProduct />} />
             </Routes>
         </>
     )

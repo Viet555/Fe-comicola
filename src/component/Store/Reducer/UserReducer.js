@@ -46,12 +46,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 account: null,
+                cart: [],
                 isauthentic: false
             };
         case actiontypes.USER_LOGOUT:
             return {
                 ...state,
                 account: null,
+                cart: [],
                 isauthentic: false
             };
         case actiontypes.ADD_PRODUCT_CART_SUCCESS:
@@ -63,10 +65,21 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case actiontypes.ADD_PRODUCT_CART_FAIL:
             return {
                 ...state,
-                account: [],
+                cart: [],
 
             };
+        case actiontypes.GET_PRODUCT_CART_SUCCESS:
+            return {
+                ...state,
+                cart: action.data,
 
+            };
+        case actiontypes.GET_PRODUCT_CART_FAIL:
+            return {
+                ...state,
+                cart: [],
+
+            };
         default: // need this for default case
             return state
 

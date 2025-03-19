@@ -55,6 +55,9 @@ const Login = () => {
             toast.success(res.MES)
             navigate('/')
         }
+        else {
+            toast.warning(res.MES)
+        }
 
     }
     return (

@@ -63,9 +63,15 @@ const addProductInCart = (userId, productId, quantity) => {
 const getProductCart = (userId,) => {
     return axios.get(`/get-product-tocart?userId=${userId}`,)
 }
+const DeleteProductCart = (userId, productId) => {
+    return axios.delete(`/Delete-product-cart-User?userId=${userId}&productId=${productId}`)
+}
+const orderCheckOutProduct = (userId, paymentMethod, address, phoneNumber) => {
+    return axios.post(`/Ordercheckout-Product`, { userId, paymentMethod, address, phoneNumber })
+}
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
     ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown,
-    AllProductBySort, addProductInCart, getProductCart
+    AllProductBySort, addProductInCart, getProductCart, DeleteProductCart, orderCheckOutProduct
 } 

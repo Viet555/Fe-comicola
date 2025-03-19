@@ -67,8 +67,12 @@ const DetailProduct = () => {
         }
     }, [dataUseId])
     const handleAddToCart = async () => {
-        dispatch(action.addProductcartByRedux(userId, productId, count))
-
+        try {
+            await dispatch(action.addProductcartByRedux(userId, productId, count));
+            dispatch(action.getProductcartByRedux(userId));
+        } catch (error) {
+            toast.error("Có lỗi xảy ra khi thêm vào giỏ hàng");
+        }
         // let res = await addProductInCart(userId, productId, count)
         // if (res && res.EC !== 0) {
         //     toast.error(res.MES)

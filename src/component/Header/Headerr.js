@@ -19,7 +19,11 @@ const Headerr = () => {
         if (cartInfor && !_.isEmpty(cartInfor)) {
             setDataCart(cartInfor)
         }
+        else {
+            setDataCart([])
+        }
     }, [cartInfor])
+
     return (
         <>
             <div className="main-container">

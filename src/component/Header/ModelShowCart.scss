@@ -58,11 +58,28 @@
 
 .content-info {
     margin-left: 10px;
-    width: 60%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 5px;
 
+}
+
+.btn-delete-cart {
+    font-size: 20px;
+    color: rgb(197, 58, 33);
+    border: 1px solid greenyellow;
+    height: fit-content;
+    width: 20px;
+    text-align: center;
+    border-radius: 5px;
+
+    &:hover {
+        border: 1px solid rgb(157, 198, 96);
+        transition: .3s;
+        cursor: pointer;
+        font-weight: 600;
+    }
 }
 
 .nameProduct {
