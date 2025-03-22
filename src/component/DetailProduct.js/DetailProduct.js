@@ -31,7 +31,7 @@ const DetailProduct = () => {
     };
     const [count, setCount] = useState(1)
     const params = useParams()
-    const Navigate = useNavigate
+    const Navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(() => {
         if (params && params.id) {
@@ -78,6 +78,14 @@ const DetailProduct = () => {
         //     toast.error(res.MES)
         // }
     }
+    const handleOnclickType = (e) => {
+        const clickedType = e.target?.getAttribute('data-type');
+        if (clickedType) {
+            console.log('Clicked type:', e.target.getAttribute('data-type'));
+            dispatch(action.fetchAllProduct(clickedType, ''))
+            Navigate('/View-product-Type', window.scroll(0, 0))
+        }
+    };
     return (
         <>
             <div className="DetailProduct-container">
@@ -131,7 +139,19 @@ const DetailProduct = () => {
                         </div>
                         <div className='' style={{ marginTop: '100px' }}>
                             <div className='code' style={{ fontSize: '20px' }}><span style={{ fontWeight: 'bold' }}>Code :</span>{dataDetail?.code}</div>
-                            <div className='type' style={{ fontSize: '20px' }}><span style={{ fontWeight: 'bold' }}>Type :</span>{Array.isArray(dataDetail?.typeProduct) ? dataDetail.typeProduct.join(', ') : dataDetail?.typeProduct || 'Khong co du lieu'}</div>
+                            {/* <div className='type' style={{ fontSize: '20px' }}><span style={{ fontWeight: 'bold' }}>Type :</span><span className='type-active'>{Array.isArray(dataDetail?.typeProduct) ? dataDetail.typeProduct.join(', ') : dataDetail?.typeProduct || 'Khong co du lieu'}</span></div> */}
+                            <div className='type' style={{ fontSize: '20px' }}>
+                                <span style={{ fontWeight: 'bold' }}>Type :</span>
+                                <span className='type-active' onClick={(e) => handleOnclickType(e)}>
+                                    {Array.isArray(dataDetail?.typeProduct) && dataDetail.typeProduct.length > 0
+                                        ? dataDetail.typeProduct.map((item, index) => (
+                                            <span key={index} data-type={item}>
+                                                {item}{index !== dataDetail.typeProduct.length - 1 ? ' , ' : ''}
+                                            </span>
+                                        ))
+                                        : 'Không có dữ liệu'}
+                                </span>
+                            </div>
                         </div>
 
                     </div>

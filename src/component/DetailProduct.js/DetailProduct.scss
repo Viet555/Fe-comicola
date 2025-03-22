@@ -133,6 +133,8 @@
                     }
                 }
 
+
+
                 .Cart {
                     display: flex;
                     align-items: center;
@@ -154,6 +156,15 @@
 
                     }
 
+
+                }
+            }
+
+            .type-active {
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(157, 147, 147);
 
                 }
             }

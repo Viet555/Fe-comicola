@@ -1,20 +1,26 @@
 import './Header.scss'
 import logoShop from '../../asset/Comi_shop.png'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as action from '../Store/export'
 import { NavDropdown } from 'react-bootstrap';
 import ModelShowCart from './ModelShowCart';
-import { useEffect, useState } from 'react';
-import _ from 'lodash';
+import { useEffect, useRef, useState } from 'react';
+import _, { assign } from 'lodash';
+import { toast } from 'react-toastify';
+import { searchProduct } from '../../service/ApiService';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [hasNavigated, setHasNavigated] = useState(false);
+    const location = useLocation()
+
     const authen = useSelector(state => state.user)
     const userInfor = useSelector(state => state.user.account)
     const cartInfor = useSelector(state => state.user.cart)
     const [showCart, setShowCart] = useState(false)
     const [dataCart, setDataCart] = useState('')
+    const [nameSearch, setNameSearch] = useState()
     useEffect(() => {
         if (cartInfor && !_.isEmpty(cartInfor)) {
             setDataCart(cartInfor)
@@ -24,6 +30,29 @@ const Headerr = () => {
         }
     }, [cartInfor])
 
+
+    const handleLogout = () => {
+        dispatch((action.UserLogout()))
+        navigate('/')
+    }
+    const handleOnkey = async (e) => {
+
+        if (e.key === 'Enter') {
+            await haneleSearchProduct(); // Gọi hàm đăng nhập
+        }
+    }
+    const haneleSearchProduct = async () => {
+
+        if (!nameSearch) {
+            toast.error('Name is Empty')
+            return;
+        }
+        else {
+            dispatch(action.findProductbyName(nameSearch))
+            navigate('/View-product-find')
+        }
+
+    }
     return (
         <>
             <div className="main-container">
@@ -34,11 +63,11 @@ const Headerr = () => {
                     <span> <NavLink to='/' className='nav-link'>Trang chủ</NavLink></span>
                     <span>Sản phẩm</span>
 
-                    <span className={authen && authen.isauthentic === true ? 'text-primary' : ''}> <NavLink to={authen && authen.isauthentic === true ? '/ ' : '/login'} className='nav-link'>{userInfor && userInfor.email ? `hello ${userInfor.email}` : 'Sign In / Register'}</NavLink></span>
+                    <span className={authen && authen.isauthentic === true ? 'text-primary' : ''}> <NavLink to={authen && authen.isauthentic === true ? '/manage-profile-user ' : '/login'} className='nav-link'>{userInfor && userInfor.email ? `hello ${userInfor.email}` : 'Sign In / Register'}</NavLink></span>
                     {authen && authen.isauthentic === true &&
                         <span className='btn-logout'>
                             <i
-                                onClick={() => dispatch((action.UserLogout()))}
+                                onClick={() => handleLogout()}
                                 className="fa-solid fa-right-from-bracket" style={{ fontSize: '15px' }}></i>
                         </span>
                     }
@@ -60,7 +89,14 @@ const Headerr = () => {
                         :
                         <>
                             <div className='d-flex'>
-                                <span> <i className="fa-solid fa-magnifying-glass"></i></span>
+                                <span className='find-icon'>
+                                    <input placeholder='Tìm kiếm sản phẩm'
+                                        value={nameSearch}
+                                        onChange={(e) => setNameSearch(e.target.value)}
+                                        onKeyDown={handleOnkey}
+
+                                    />
+                                    <i className="fa-solid fa-magnifying-glass" onClick={() => haneleSearchProduct()}></i></span>
                                 <span><i className="fa-regular fa-user"></i></span>
                                 <div className='hide-cart'>
                                     <span className='cart-shop' onClick={() => setShowCart(!showCart)}><i className="fa-solid fa-cart-shopping"></i></span>
@@ -70,7 +106,7 @@ const Headerr = () => {
                                         <span className='hide-quantity'>0</span>
                                     }
                                 </div>
-                                <span>{cartInfor?.totalPrice ? cartInfor?.totalPrice + 'đ' : ''}</span>
+                                <span>{cartInfor?.totalPrice ? cartInfor?.totalPrice + '₫' : ''}</span>
                             </div>
 
                         </>

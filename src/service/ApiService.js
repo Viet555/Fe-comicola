@@ -12,6 +12,9 @@ const DeleteUser = (UserId) => {
 const UpdateAUser = (_id, firstName, lastName, roleId, address, gender, image) => {
     return axios.put('/api/UpdateUser', { _id, firstName, lastName, roleId, address, gender, image })
 }
+const UpdateUserAndPass = (dataEdit) => {
+    return axios.put('/api/UpdateUser', dataEdit)
+}
 const UserLogin = (dataLog) => {
     return axios.post('/api/LoginUser', dataLog)
 }
@@ -69,9 +72,15 @@ const DeleteProductCart = (userId, productId) => {
 const orderCheckOutProduct = (userId, paymentMethod, address, phoneNumber) => {
     return axios.post(`/Ordercheckout-Product`, { userId, paymentMethod, address, phoneNumber })
 }
+const getHistoryOrder = (userId,) => {
+    return axios.get(`/api/getHistory-Order?userId=${userId}`)
+}
+const searchProduct = (name) => {
+    return axios.get(`/api/Search-product?name=${name}`,)
+}
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
     ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown,
-    AllProductBySort, addProductInCart, getProductCart, DeleteProductCart, orderCheckOutProduct
+    AllProductBySort, addProductInCart, getProductCart, DeleteProductCart, orderCheckOutProduct, getHistoryOrder, UpdateUserAndPass, searchProduct
 } 

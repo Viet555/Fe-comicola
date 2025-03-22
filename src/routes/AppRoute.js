@@ -9,6 +9,13 @@ import DetailProduct from "../component/DetailProduct.js/DetailProduct";
 import MarkdownProduct from "../component/Admin/MarkDownProduct/MarkdownProduct";
 import ViewAllProduct from "../component/ViewAllProduct/ViewAllProduct";
 import PaymentProduct from "../component/Header/PaymentProduct";
+import ProfileUser from "../component/Header/ProfileUser/ProfileUser";
+import Dashboard from "../component/Header/ProfileUser/Dashboard";
+import Order from "../component/Header/ProfileUser/Order";
+import ProfileAccount from "../component/Header/ProfileUser/ProfileAccount";
+import ViewProductFind from "../component/Header/ViewProductFind";
+import ViewProductByType from "../component/DetailProduct.js/ViewProductByType";
+
 const AppRoute = () => {
     return (
         <>
@@ -26,6 +33,14 @@ const AppRoute = () => {
 
                 <Route path="/viewAllproDuct" element={<ViewAllProduct />} />
                 <Route path="/Payment-product" element={<PaymentProduct />} />
+
+                <Route path="/manage-profile-user" element={<ProfileUser />} >
+                    <Route index element={<Dashboard />} />
+                    <Route path="order-user" element={<Order />} />
+                    <Route path="account" element={<ProfileAccount />} />
+                </Route>
+                <Route path="/View-product-find" element={<ViewProductFind />} />
+                <Route path="/View-product-Type" element={<ViewProductByType />} />
             </Routes>
         </>
     )

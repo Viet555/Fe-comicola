@@ -1,4 +1,4 @@
-import { addProductInCart, getProductCart } from "../../../service/ApiService";
+import { addProductInCart, getHistoryOrder, getProductCart, searchProduct } from "../../../service/ApiService";
 import actiontypes from "./ActionType";
 
 export const UserLoginSuccess = (userInfor) => ({
@@ -69,4 +69,59 @@ export const getProductcartByRedux = (userId) => {
         }
     }
 }
+export const getHistoryOrderByRedux = (userId) => {
+    return async (dispatch, getState) => {
+
+        let dataGet = await getHistoryOrder(userId)
+        try {
+
+            if (dataGet && dataGet.EC === 0) {
+                console.log(dataGet)
+                dispatch({
+                    type: actiontypes.GET_ORDER_PRODUCT_SUCCESS,
+                    data: dataGet.orders
+                })
+
+            } else {
+                dispatch({
+                    type: actiontypes.GET_ORDER_PRODUCT_FAIL,
+
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actiontypes.GET_ORDER_PRODUCT_FAIL,
+            })
+            console.log('ERR', e)
+        }
+    }
+}
+///
+export const findProductbyName = (name) => {
+    return async (dispatch, getState) => {
+
+        let dataFind = await searchProduct(name)
+        try {
+
+            if (dataFind && dataFind.EC === 0) {
+                dispatch({
+                    type: actiontypes.FIND_PRODUCT_BY_NAME_SUCCESS,
+                    data: dataFind.products
+                })
+
+            } else {
+                dispatch({
+                    type: actiontypes.FIND_PRODUCT_BY_NAME_FAIL,
+
+                })
+            }
+        } catch (e) {
+            dispatch({
+                type: actiontypes.FIND_PRODUCT_BY_NAME_FAIL,
+            })
+            console.log('ERR', e)
+        }
+    }
+}
+
 

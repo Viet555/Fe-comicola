@@ -11,9 +11,11 @@ const INITIAL_STATE = {
         lastName: '',
         gender: '',
         address: '',
-
+        phoneNumber: '',
         id: ''
     },
+    dataFind: '',
+    historyOrder: '',
     cart: [],
     isauthentic: false
 };
@@ -35,6 +37,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     lastName: action?.data?.data?.lastName,
                     gender: action?.data?.data?.gender,
                     address: action?.data?.data?.address,
+                    phoneNumber: action?.data?.data?.phoneNumber,
 
                     id: action?.data?.data?._id,
                 },
@@ -80,6 +83,32 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 cart: [],
 
             };
+        case actiontypes.GET_ORDER_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                historyOrder: action.data,
+
+            };
+        case actiontypes.GET_ORDER_PRODUCT_FAIL:
+            return {
+                ...state,
+                historyOrder: [],
+
+            };
+        //
+        case actiontypes.FIND_PRODUCT_BY_NAME_SUCCESS:
+            return {
+                ...state,
+                dataFind: action.data,
+
+            };
+        case actiontypes.FIND_PRODUCT_BY_NAME_FAIL:
+            return {
+                ...state,
+                dataFind: [],
+
+            };
+
         default: // need this for default case
             return state
 

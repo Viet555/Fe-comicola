@@ -101,7 +101,7 @@ const TableUser = (props) => {
                 <ReactPaginate
                     containerClassName={"pagination gap-4"}
                     pageClassName={"page-item"}
-                    activeClassName={"active"}
+                    activeClassName={""}
                     onPageChange={handlePageClick}
                     nextLabel={
                         <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>

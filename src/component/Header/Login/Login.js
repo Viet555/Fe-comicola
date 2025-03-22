@@ -43,6 +43,9 @@ const Login = () => {
 
     }
     const handleLogin = async (event) => {
+        if (event.key === 'Enter') {
+
+        }
         event.preventDefault()
         checkIsValid()
         if (!errors) {
@@ -60,6 +63,14 @@ const Login = () => {
         }
 
     }
+    // const handleKeyDown = async (event) => {
+    //     console.log(event)
+    //     // Kiểm tra nếu phím được nhấn là Enter
+    //     if (event.code === 'Enter') {
+    //         event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+    //         await handleLogin(); // Gọi hàm đăng nhập
+    //     }
+    // };
     return (
         <>
             <div className='login-container'>
@@ -91,6 +102,7 @@ const Login = () => {
                                 onChange={(handleOnchange)}
                                 type='password'
                                 className='form-control'
+                            // onKeyDown={handleKeyDown}
                             />
                             {errors.password && <p style={{ color: 'red' }}>password has not been entered</p>}
                             <div className='forgot-password' onClick={() => navigate('/')}>Forgot your password?</div>
