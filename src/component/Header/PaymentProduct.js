@@ -121,7 +121,7 @@ const PaymentProduct = (props) => {
                                             <span className='name-product'>{item.productId?.nameProduct}</span>
                                         </div>
                                         <div className='type-body'>Type:{Array.isArray(item.productId?.typeProduct) ? item.productId?.typeProduct.join(', ') : item.productId?.typeProduct}</div>
-                                        <div className='price-body'>{item.productId?.count}</div>
+                                        <div className='price-body'>{item.productId?.count}đ</div>
                                         <div className='quantity-body'>{item.quantity}</div>
                                         <div className='money-body'>{item.total}</div>
                                     </div>

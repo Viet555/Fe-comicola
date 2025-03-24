@@ -1,0 +1,57 @@
+.oders-container {
+    .content-main {
+        display: flex;
+        border-bottom: 1px solid rgba(190, 176, 176, 0.825);
+        padding-bottom: 5px;
+        margin-top: 10px;
+
+        img {
+            border-radius: 5px;
+            height: 170px;
+            width: 150px;
+        }
+
+        .content-order {
+            padding-left: 6px;
+
+            p {
+                width: 100%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                text-overflow: hidden;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: normal;
+                /* Đảm bảo văn bản xuống dòng */
+            }
+        }
+    }
+
+    .content-child {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+
+
+        .content {
+            padding-top: 5px;
+            display: -webkit-box;
+            /* Sử dụng định dạng khối linh hoạt */
+            -webkit-box-orient: vertical;
+            /* Hướng khối theo chiều dọc */
+            -webkit-line-clamp: 2;
+            /* Giới hạn hiển thị tối đa 2 dòng */
+            overflow: hidden;
+            /* Ẩn phần nội dung vượt quá */
+            text-overflow: ellipsis;
+            /* Thêm dấu "..." ở cuối */
+            word-break: break-word;
+
+        }
+    }
+
+    .bold-text {
+        font-weight: bold;
+    }
+}

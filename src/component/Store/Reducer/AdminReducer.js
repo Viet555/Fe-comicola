@@ -3,7 +3,8 @@ const INITIAL_STATE = {
     typeProduct: [],
     allProduct: [],
     detailProduct: [],
-    dataProductSort: []
+    dataProductSort: [],
+    historyOrder: []
 };
 
 const AdminReducer = (state = INITIAL_STATE, action) => {
@@ -55,6 +56,18 @@ const AdminReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 dataProductSort: []
+            };
+        case actiontypes.GET_ORDER_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                historyOrder: action.data,
+
+            };
+        case actiontypes.GET_ORDER_PRODUCT_FAIL:
+            return {
+                ...state,
+                historyOrder: [],
+
             };
         default: // need this for default case
             return state

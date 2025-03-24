@@ -128,7 +128,7 @@ const MarkdownProduct = () => {
             toast.success(response.MES)
         }
         else {
-            toast.error(response.MES)
+            toast.error(response?.MES)
         }
     }
     return (

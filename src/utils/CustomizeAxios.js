@@ -1,4 +1,6 @@
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const instance = axios.create({
     baseURL: 'http://localhost:8888/',
 
@@ -6,7 +8,10 @@ const instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
-    // Do something before request is sent
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+    }
     return config;
 }, function (error) {
     // Do something with request error
@@ -21,8 +26,47 @@ instance.interceptors.response.use(function (response) {
     // Do something with response data
     return response && response.data ? response.data : response;
 }, function (error) {
+
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    return Promise.reject(error);
+    let errorMessage = ''
+    switch (error.status) {
+        case 400:
+            errorMessage = 'Bad Request: The server could not understand the request.';
+            toast.error(errorMessage)
+
+            break;
+        case 401:
+            errorMessage = 'Unauthorized: Authentication is required.';
+            toast.error(errorMessage)
+            window.location.href = '/login'
+            break;
+        case 403:
+            errorMessage = 'Forbidden: You do not have permission to access this resource.';
+            toast.error(errorMessage)
+            window.location.href = '/404-page'
+            break;
+        case 404:
+            errorMessage = 'Not Found: The requested resource could not be found.';
+            toast.error(errorMessage)
+            break;
+        case 500:
+            errorMessage = 'Internal Server Error: There is a problem with the server.';
+            toast.error(errorMessage)
+            break;
+        case 502:
+            errorMessage = 'Bad Gateway: The server received an invalid response from an upstream server.';
+            toast.error(errorMessage)
+            break;
+        case 503:
+            errorMessage = 'Service Unavailable: The server is currently unable to handle the request.';
+            toast.error(errorMessage)
+            break;
+        default:
+            errorMessage = 'An unexpected error occurred.';
+            toast.error(errorMessage)
+            break;
+    }
+
 });
 export default instance

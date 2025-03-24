@@ -55,19 +55,21 @@ const Login = () => {
         let res = await UserLogin(formLogin)
         if (res && res.EC === 0) {
             dispatch(UserLoginSuccess(res))
-            toast.success(res.MES)
+            localStorage.setItem('token', res?.token)
+            localStorage.setItem('refreshToken', res?.refreshToken)
+            toast.success(res?.MES)
             navigate('/')
         }
         else {
-            toast.warning(res.MES)
+            toast.warning(res?.MES)
         }
 
     }
-    // const handleKeyDown = async (event) => {
-    //     console.log(event)
+    // const handleKeyDown = async (e) => {
+    //     console.log(e.key)
     //     // Kiểm tra nếu phím được nhấn là Enter
-    //     if (event.code === 'Enter') {
-    //         event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+    //     if (e && e.key === 'Enter') {
+    //         e.preventDefault(); // Ngăn chặn hành vi mặc định của form
     //         await handleLogin(); // Gọi hàm đăng nhập
     //     }
     // };
@@ -92,6 +94,7 @@ const Login = () => {
                                 type='email'
                                 className='form-control'
                                 onChange={(handleOnchange)}
+                            // onKeyDown={(e) => handleKeyDown(e)}
                             />
                             {errors.email && <p style={{ color: 'red' }}>Email has not been entered</p>}
 
@@ -102,6 +105,7 @@ const Login = () => {
                                 onChange={(handleOnchange)}
                                 type='password'
                                 className='form-control'
+                            // onKeyDown={(e) => handleKeyDown(e)}
                             // onKeyDown={handleKeyDown}
                             />
                             {errors.password && <p style={{ color: 'red' }}>password has not been entered</p>}
@@ -109,6 +113,7 @@ const Login = () => {
 
                             <div className='button-control'>
                                 <button className='btn-login'
+
                                     onClick={(event) => handleLogin(event)}
                                 >Log in</button>
                                 <button className='btn-login'

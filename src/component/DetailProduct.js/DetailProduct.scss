@@ -78,6 +78,7 @@
                 margin-top: 20px;
                 font-style: italic;
                 display: block;
+
                 // /* Đảm bảo văn bản hiển thị đầy đủ */
                 // line-height: 1.5em;
                 // /* Khoảng cách giữa các dòng */
@@ -125,10 +126,12 @@
                     align-items: center;
                     gap: 20px;
                     font-size: 20px;
-                    border: 1px solid rgba(156, 145, 145, 0.704);
+                    border: 1px solid rgba(205, 186, 186, 0.618);
+
 
                     .amount-minus,
-                    .amount-plus :hover {
+                    .amount-plus {
+                        font-size: 15px;
                         cursor: pointer;
                     }
                 }

@@ -15,7 +15,8 @@ import Order from "../component/Header/ProfileUser/Order";
 import ProfileAccount from "../component/Header/ProfileUser/ProfileAccount";
 import ViewProductFind from "../component/Header/ViewProductFind";
 import ViewProductByType from "../component/DetailProduct.js/ViewProductByType";
-
+import ManageOrder from '../component/Admin/ManageOrder/ManageOrder'
+import Pagebanned from "../404Page";
 const AppRoute = () => {
     return (
         <>
@@ -41,6 +42,9 @@ const AppRoute = () => {
                 </Route>
                 <Route path="/View-product-find" element={<ViewProductFind />} />
                 <Route path="/View-product-Type" element={<ViewProductByType />} />
+                <Route path="/Manage-order-product" element={<ManageOrder />} />
+
+                <Route path="/404-page" element={<Pagebanned />} />
             </Routes>
         </>
     )

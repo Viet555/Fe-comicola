@@ -60,7 +60,7 @@ const ProfileAccount = () => {
             })
         }
         else {
-            toast.error(res.MES)
+            toast.error(res?.MES)
         }
     }
     return (

@@ -107,7 +107,7 @@ const DetailProduct = () => {
                     </div>
                     <div className='content-right'>
                         <div className='nameProduct'>{dataDetail.nameProduct}</div>
-                        <div className='costProduct'>{dataDetail.count}</div>
+                        <div className='costProduct'>{dataDetail.count}đ</div>
                         <div className='desProduct'>{dataDetail.desProduct}</div>
                         {dataDetail.note &&
                             <div className='note'>

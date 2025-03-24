@@ -57,6 +57,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 account: null,
                 cart: [],
+
                 isauthentic: false
             };
         case actiontypes.ADD_PRODUCT_CART_SUCCESS:

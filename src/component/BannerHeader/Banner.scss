@@ -13,7 +13,9 @@
             height: 100%;
             width: 100%;
             transform: scale(1);
-
+            image-rendering: crisp-edges;
+            /* Cải thiện độ nét trên trình duyệt */
+            image-rendering: -webkit-optimize-contrast;
             transition: opacity 0.5s ease, transform 0.5s ease;
 
             &:hover {
@@ -46,11 +48,12 @@
                 height: 100%;
                 width: 100%;
                 transform: scale(1);
-                /* Giữ ảnh ở kích thước ban đầu */
+                image-rendering: crisp-edges;
+                /* Cải thiện độ nét trên trình duyệt */
+                image-rendering: -webkit-optimize-contrast;
+                /* Cải thiện độ nét trên Chrome */
                 transition: opacity 0.5s ease, transform 0.5s ease;
-                /* Thêm hiệu ứng chuyển đổi mượt mà */
 
-                /* Hiệu ứng mờ dần và trượt ảnh */
                 &:hover {
                     cursor: pointer;
                     /* Khi hover, ảnh sẽ mờ đi một chút */
@@ -93,14 +96,14 @@
             }
 
             img {
+                image-rendering: crisp-edges;
+                /* Cải thiện độ nét trên trình duyệt */
                 height: 100%;
                 width: 100%;
                 transform: scale(1);
                 /* Giữ ảnh ở kích thước ban đầu */
                 transition: opacity 0.5s ease, transform 0.5s ease;
-                /* Thêm hiệu ứng chuyển đổi mượt mà */
 
-                /* Hiệu ứng mờ dần và trượt ảnh */
                 &:hover {
                     cursor: pointer;
                     /* Khi hover, ảnh sẽ mờ đi một chút */

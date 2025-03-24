@@ -27,6 +27,7 @@ const ModelShowCart = (props) => {
     }
     const handlePayment = () => {
         navigate(`/Payment-product`);
+        setShowCart(!showCart)
     }
     return (
         <>

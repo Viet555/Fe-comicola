@@ -2,6 +2,7 @@ import { use, useEffect, useState } from "react"
 import * as action from '../../Store/export'
 import { useDispatch, useSelector } from "react-redux"
 import _ from "lodash"
+import { NavLink } from "react-router-dom"
 
 const Order = (props) => {
     const dispatch = useDispatch()
@@ -41,7 +42,7 @@ const Order = (props) => {
                                         </div>
                                         <div className='dateOrder-body'>{item.createdAt}</div>
                                         <div className='payment-body'>{item.paymentMethod}</div>
-                                        <div className='status-body'><span style={{ backgroundColor: 'yellow', padding: '4px', borderRadius: '5px' }}>{item.status}</span></div>
+                                        <div className='status-body'><span style={{ backgroundColor: item.status === 'Pending' ? `yellow` : item.status === 'Completed' ? `green` : item.status === 'Canceled' ? 'rgb(226, 77, 77)' : 'transparent', padding: '4px', borderRadius: '5px' }}>{item.status}</span></div>
                                         <div className='into-money'>{item.totalAmount}đ</div>
 
                                     </div>
@@ -49,7 +50,7 @@ const Order = (props) => {
                             })
                             : <div className="content-order-empty ">
                                 <span className="ct1">Bạn chưa có đơn hàng nào</span>
-                                <span className="ct2">Tiếp tục mua sắm</span>
+                                <span className="ct2"><NavLink to='/' className='nav-link'>Tiếp tục mua sắm</NavLink></span>
                             </div>
                         }
                     </div>

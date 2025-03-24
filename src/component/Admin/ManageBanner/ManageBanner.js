@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as action from "../../Store/export"
 import { toast } from 'react-toastify';
 import { ApiCreateNewBanner, ApiDeleteBanner, ApitfetchAllBannerByAction, ApiUpdateBanner } from '../../../service/ApiService';
-
+import imgwhite from '../../../asset/newBanner/anhtrang.jfif'
 const ManageBanner = () => {
 
 
@@ -21,8 +21,6 @@ const ManageBanner = () => {
         FetchAllBannerFirstByType()
         FetchAllBannerSecondtByType()
     }, [])
-
-
 
     const [show, setShow] = useState(false)
     const [showEdit, setShowEdit] = useState(false)
@@ -316,7 +314,7 @@ const ManageBanner = () => {
                                             <label >{item.nameProduct}</label>
                                         </div>
                                         <div className='form-group img-product  my-3'>
-                                            <img src={item.bannerProduct} />
+                                            <img src={item.bannerProduct ? item.bannerProduct : imgwhite} />
                                         </div>
                                         <div className='btn-select'>
                                             <button className='btn btn-info'
@@ -357,7 +355,7 @@ const ManageBanner = () => {
                                             <label >{item.nameProduct}</label>
                                         </div>
                                         <div className='form-group img-product  my-3'>
-                                            <img src={item.bannerProduct} />
+                                            <img src={item.bannerProduct ? item.bannerProduct : imgwhite} />
                                         </div>
                                         <div className='btn-select'>
                                             <button className='btn btn-info'

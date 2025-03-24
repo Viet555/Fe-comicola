@@ -78,9 +78,14 @@ const getHistoryOrder = (userId,) => {
 const searchProduct = (name) => {
     return axios.get(`/api/Search-product?name=${name}`,)
 }
+const StatusOrder = (orderId, status) => {
+    return axios.put(`/api/confirm-status-order?orderId=${orderId}&status=${status}`,)
+}
+
 export {
     getAllUserTable, createUser, DeleteUser, UpdateAUser,
     UserLogin, fetchAllDataType, createNewProduct, getDataProductByType, deleteAProduct, ApiUpdateProduct, ApiFetchAllProductByType,
     ApiCreateNewBanner, ApitfetchAllBannerByAction, ApiDeleteBanner, ApiUpdateBanner, GetDetailProduct, handleMarkdown,
-    AllProductBySort, addProductInCart, getProductCart, DeleteProductCart, orderCheckOutProduct, getHistoryOrder, UpdateUserAndPass, searchProduct
+    AllProductBySort, addProductInCart, getProductCart, DeleteProductCart, orderCheckOutProduct, getHistoryOrder,
+    UpdateUserAndPass, searchProduct, StatusOrder
 } 

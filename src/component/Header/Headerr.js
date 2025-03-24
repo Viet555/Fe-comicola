@@ -33,6 +33,8 @@ const Headerr = () => {
 
     const handleLogout = () => {
         dispatch((action.UserLogout()))
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         navigate('/')
     }
     const handleOnkey = async (e) => {
@@ -82,6 +84,7 @@ const Headerr = () => {
                             <NavDropdown title="Product Manage" className='SetupBut navdrop-header' >
                                 <NavLink to='/ManageProduct' className='nav-link nav-link-drop '>Manage Products</NavLink>
                                 <NavLink to='/ManageMarkdown' className='nav-link nav-link-drop'>Manage Markdown</NavLink>
+                                <NavLink to='/Manage-order-product' className='nav-link nav-link-drop'>Manage Orders</NavLink>
                             </NavDropdown>
 
                             <span> <NavLink to='/ManageBanner' className='nav-link SetupBut'>Manage Banners</NavLink></span>
@@ -97,7 +100,7 @@ const Headerr = () => {
 
                                     />
                                     <i className="fa-solid fa-magnifying-glass" onClick={() => haneleSearchProduct()}></i></span>
-                                <span><i className="fa-regular fa-user"></i></span>
+                                <span><i className="fa-regular fa-user" onClick={() => navigate(`/manage-profile-user/account`)}></i></span>
                                 <div className='hide-cart'>
                                     <span className='cart-shop' onClick={() => setShowCart(!showCart)}><i className="fa-solid fa-cart-shopping"></i></span>
                                     {cartInfor && cartInfor?.items?.length > 0 ?
