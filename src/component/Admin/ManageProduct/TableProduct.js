@@ -26,7 +26,7 @@ const TableProduct = (props) => {
             toast.success(res.MES)
             fecthProductTable()
         } else {
-            toast.error(res.MES)
+            toast.error(res?.MES)
         }
     }
     return (

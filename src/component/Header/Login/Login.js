@@ -55,7 +55,7 @@ const Login = () => {
         let res = await UserLogin(formLogin)
         if (res && res.EC === 0) {
             dispatch(UserLoginSuccess(res))
-            localStorage.setItem('token', res?.token)
+            localStorage.setItem('token', res?.accessToken)
             localStorage.setItem('refreshToken', res?.refreshToken)
             toast.success(res?.MES)
             navigate('/')

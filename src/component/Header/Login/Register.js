@@ -88,12 +88,13 @@ const Register = () => {
         }
         if (checkPassword === true) {
             let res = await createUser(formData)
+            console.log(res)
             if (res && res.EC === 0) {
                 toast.success('Create User Succes')
                 navigate('/login')
             }
             else {
-                toast.warning(res.MES)
+                toast.warning(res?.MES)
             }
         }
 

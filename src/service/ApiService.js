@@ -69,8 +69,8 @@ const getProductCart = (userId,) => {
 const DeleteProductCart = (userId, productId) => {
     return axios.delete(`/Delete-product-cart-User?userId=${userId}&productId=${productId}`)
 }
-const orderCheckOutProduct = (userId, paymentMethod, address, phoneNumber) => {
-    return axios.post(`/Ordercheckout-Product`, { userId, paymentMethod, address, phoneNumber })
+const orderCheckOutProduct = (userId, paymentMethod, address, phoneNumber, email) => {
+    return axios.post(`/Ordercheckout-Product`, { userId, paymentMethod, address, phoneNumber, email })
 }
 const getHistoryOrder = (userId,) => {
     return axios.get(`/api/getHistory-Order?userId=${userId}`)

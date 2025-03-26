@@ -69,7 +69,7 @@ const DetailProduct = () => {
     const handleAddToCart = async () => {
         try {
             await dispatch(action.addProductcartByRedux(userId, productId, count));
-            dispatch(action.getProductcartByRedux(userId));
+            await dispatch(action.getProductcartByRedux(userId));
         } catch (error) {
             toast.error("Có lỗi xảy ra khi thêm vào giỏ hàng");
         }

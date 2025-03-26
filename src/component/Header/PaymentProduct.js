@@ -12,7 +12,7 @@ const PaymentProduct = (props) => {
     const dispatch = useDispatch()
     const dataCart = useSelector(state => state.user.cart)
     const dataUseId = useSelector(state => state.user.account?.id)
-
+    const dataUserEmail = useSelector(state => state.user.account?.email)
     const [formOrder, setFormOrder] = useState({
         address: '',
         phoneNumber: '',
@@ -55,13 +55,11 @@ const PaymentProduct = (props) => {
     }
     const handleOrderProduct = async () => {
         let check = isValidInput()
-
-
         if (check == false) {
             toast.error('Missing Input')
             return;
         }
-        let res = await orderCheckOutProduct(dataUseId, formOrder.paymentMethod, formOrder.address, formOrder.phoneNumber)
+        let res = await orderCheckOutProduct(dataUseId, formOrder.paymentMethod, formOrder.address, formOrder.phoneNumber, dataUserEmail)
         if (res && res.EC === 0) {
             setShow(true)
             try {
@@ -123,7 +121,7 @@ const PaymentProduct = (props) => {
                                         <div className='type-body'>Type:{Array.isArray(item.productId?.typeProduct) ? item.productId?.typeProduct.join(', ') : item.productId?.typeProduct}</div>
                                         <div className='price-body'>{item.productId?.count}đ</div>
                                         <div className='quantity-body'>{item.quantity}</div>
-                                        <div className='money-body'>{item.total}</div>
+                                        <div className='money-body'>{item.total}đ</div>
                                     </div>
                                 )
                             })

@@ -13,6 +13,7 @@ const ModelShowCart = (props) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const handleDeleteCart = async (e) => {
 
         let IdProduct = e?.productId?._id

@@ -49,7 +49,6 @@ export const getProductcartByRedux = (userId) => {
         try {
 
             if (dataGet && dataGet.EC === 0) {
-
                 dispatch({
                     type: actiontypes.GET_PRODUCT_CART_SUCCESS,
                     data: dataGet.cart

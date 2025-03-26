@@ -12,7 +12,7 @@ const ViewProductFind = () => {
             <div className="view-all-container container">
                 <div className="content-header">
                     <span className='home' ><NavLink to='/' className='nav-link'>Trang chủ/</NavLink></span>
-                    <span className='product-name mx-1'> ten</span>
+                    <span className='product-name mx-1'></span>
                 </div>
                 <div className='sort-product '>
                     <span className='text-view'>{data.length} kết quả</span>

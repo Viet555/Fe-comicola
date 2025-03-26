@@ -12,15 +12,20 @@ import { searchProduct } from '../../service/ApiService';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [hasNavigated, setHasNavigated] = useState(false);
-    const location = useLocation()
 
     const authen = useSelector(state => state.user)
     const userInfor = useSelector(state => state.user.account)
     const cartInfor = useSelector(state => state.user.cart)
+    const userId = useSelector(state => state.user.account?.id)
     const [showCart, setShowCart] = useState(false)
     const [dataCart, setDataCart] = useState('')
     const [nameSearch, setNameSearch] = useState()
+    useEffect(() => {
+        if (userId) {
+            dispatch(action.getProductcartByRedux(userId))
+        }
+
+    }, [userId])
     useEffect(() => {
         if (cartInfor && !_.isEmpty(cartInfor)) {
             setDataCart(cartInfor)

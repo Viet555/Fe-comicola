@@ -14,8 +14,6 @@ instance.interceptors.request.use(function (config) {
     }
     return config;
 }, function (error) {
-    // Do something with request error
-
     return Promise.reject(error);
 
 });
@@ -25,10 +23,32 @@ instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response && response.data ? response.data : response;
-}, function (error) {
-
+}, async function as(error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    if (error.status === 401) {
+        const refreshToken = localStorage.getItem('refreshToken')
+        if (refreshToken) {
+            try {
+                const res = await axios.post('/refresh-token', {}, {
+                    headers: {
+                        'Authorization': `Bearer ${refreshToken}`,
+                    }
+                });
+                localStorage.setItem("token", res.accessToken);
+                error.config.headers['Authorization'] = `Bearer ${res.accessToken}`;
+                return axios(error.config);
+            } catch (e) {
+                console.log(e)
+                toast.error("Token expired. Please login again.");
+                window.location.href = '/login';
+            }
+        } else {
+            toast.error("No refresh token available. Please login again.");
+            window.location.href = '/login';
+        }
+    }
+
     let errorMessage = ''
     switch (error.status) {
         case 400:
