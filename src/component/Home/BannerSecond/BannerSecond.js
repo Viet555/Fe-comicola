@@ -14,7 +14,7 @@ const BannerSecond = () => {
             setDataBannerSecond(response.data)
         }
         else {
-            toast.error(response.MES)
+            toast.error(response?.MES)
         }
     }
     useEffect(() => {

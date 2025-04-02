@@ -7,7 +7,9 @@ export const fetchAllTypeProduct = () => {
         let resType = await fetchAllDataType()
         try {
             if (resType && resType.EC === 0) {
+                console.log('>>>', resType)
                 dispatch({
+
                     type: actiontypes.FETCH_DATA_TYPE_SUCCESS,
                     data: resType.data
                 })

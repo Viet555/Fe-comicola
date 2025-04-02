@@ -109,7 +109,7 @@ const Login = () => {
                             // onKeyDown={handleKeyDown}
                             />
                             {errors.password && <p style={{ color: 'red' }}>password has not been entered</p>}
-                            <div className='forgot-password' onClick={() => navigate('/')}>Forgot your password?</div>
+                            <div className='forgot-password' onClick={() => navigate('/forgot-password')}>Forgot your password?</div>
 
                             <div className='button-control'>
                                 <button className='btn-login'

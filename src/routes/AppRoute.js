@@ -17,6 +17,8 @@ import ViewProductFind from "../component/Header/ViewProductFind";
 import ViewProductByType from "../component/DetailProduct.js/ViewProductByType";
 import ManageOrder from '../component/Admin/ManageOrder/ManageOrder'
 import Pagebanned from "../404Page";
+import ForgotPassword from "../component/Header/Login/ForgerPassword";
+import ResetPassword from "../component/Header/Login/ResertPassword";
 const AppRoute = () => {
     return (
         <>
@@ -45,6 +47,8 @@ const AppRoute = () => {
                 <Route path="/Manage-order-product" element={<ManageOrder />} />
 
                 <Route path="/404-page" element={<Pagebanned />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} />
             </Routes>
         </>
     )
