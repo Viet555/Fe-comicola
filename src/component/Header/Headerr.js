@@ -9,10 +9,12 @@ import { useEffect, useRef, useState } from 'react';
 import _, { assign } from 'lodash';
 import { toast } from 'react-toastify';
 import { searchProduct } from '../../service/ApiService';
+import SidebarManage from './SiderBar';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const dataAllType = useSelector(state => state.admin.typeProduct)
     const authen = useSelector(state => state.user)
     const userInfor = useSelector(state => state.user.account)
     const cartInfor = useSelector(state => state.user.cart)
@@ -20,6 +22,11 @@ const Headerr = () => {
     const [showCart, setShowCart] = useState(false)
     const [dataCart, setDataCart] = useState('')
     const [nameSearch, setNameSearch] = useState()
+
+    const [collapsed, setCollapsed] = useState(true);
+    const toggleSidebar = () => {
+        setCollapsed(!collapsed);
+    }
     useEffect(() => {
         if (userId) {
             dispatch(action.getProductcartByRedux(userId))
@@ -60,6 +67,11 @@ const Headerr = () => {
         }
 
     }
+    const handleOnClickType = (e) => {
+        let clickedType = e.target.innerText
+        dispatch(action.fetchAllProduct(clickedType, ''))
+        navigate('/View-product-Type', window.scroll(0, 0))
+    }
     return (
         <>
             <div className="main-container">
@@ -68,7 +80,23 @@ const Headerr = () => {
                 </div>
                 <div className="content-center">
                     <span> <NavLink to='/' className='nav-link'>Trang chủ</NavLink></span>
-                    <span>Sản phẩm</span>
+                    <div className='dropdown-product'>
+                        <span>Sản phẩm</span>
+                        <div className='drop-content'>
+
+                            {dataAllType && dataAllType.length > 0 &&
+                                dataAllType.map(item => {
+                                    return (
+                                        <span onClick={handleOnClickType}>{item.allCodeInfo?.name}</span>
+                                    )
+                                })
+
+                            }
+
+
+                        </div>
+                    </div>
+
 
                     <span className={authen && authen.isauthentic === true ? 'text-primary' : ''}> <NavLink to={authen && authen.isauthentic === true ? '/manage-profile-user ' : '/login'} className='nav-link'>{userInfor && userInfor.email ? `hello ${userInfor.email}` : 'Sign In / Register'}</NavLink></span>
                     {authen && authen.isauthentic === true &&
@@ -81,43 +109,48 @@ const Headerr = () => {
 
                 </div>
                 <div className="content-right">
-                    {userInfor && userInfor.roleId === 'admin' ?
-                        <div className='d-flex '>
-                            <span> <NavLink to='/ManageUser' className='nav-link SetupBut' >Manage User</NavLink></span>
+                    <>
 
+                        <div className='d-flex'>
+                            <span className='find-icon'>
+                                <input placeholder='Tìm kiếm sản phẩm'
+                                    value={nameSearch}
+                                    onChange={(e) => setNameSearch(e.target.value)}
+                                    onKeyDown={handleOnkey}
 
-                            <NavDropdown title="Product Manage" className='SetupBut navdrop-header' >
-                                <NavLink to='/ManageProduct' className='nav-link nav-link-drop '>Manage Products</NavLink>
-                                <NavLink to='/ManageMarkdown' className='nav-link nav-link-drop'>Manage Markdown</NavLink>
-                                <NavLink to='/Manage-order-product' className='nav-link nav-link-drop'>Manage Orders</NavLink>
-                            </NavDropdown>
-
-                            <span> <NavLink to='/ManageBanner' className='nav-link SetupBut'>Manage Banners</NavLink></span>
-                        </div>
-                        :
-                        <>
-                            <div className='d-flex'>
-                                <span className='find-icon'>
-                                    <input placeholder='Tìm kiếm sản phẩm'
-                                        value={nameSearch}
-                                        onChange={(e) => setNameSearch(e.target.value)}
-                                        onKeyDown={handleOnkey}
-
-                                    />
-                                    <i className="fa-solid fa-magnifying-glass" onClick={() => haneleSearchProduct()}></i></span>
-                                <span><i className="fa-regular fa-user" onClick={() => navigate(`/manage-profile-user/account`)}></i></span>
-                                <div className='hide-cart'>
-                                    <span className='cart-shop' onClick={() => setShowCart(!showCart)}><i className="fa-solid fa-cart-shopping"></i></span>
-                                    {cartInfor && cartInfor?.items?.length > 0 ?
-                                        <span className='hide-quantity'>{cartInfor?.items?.length}</span>
-                                        :
-                                        <span className='hide-quantity'>0</span>
-                                    }
-                                </div>
-                                <span>{cartInfor?.totalPrice ? cartInfor?.totalPrice + '₫' : ''}</span>
+                                />
+                                <i className="fa-solid fa-magnifying-glass" onClick={() => haneleSearchProduct()}></i></span>
+                            <span><i className="fa-regular fa-user" onClick={() => navigate(`/manage-profile-user/account`)}></i></span>
+                            <div className='hide-cart'>
+                                <span className='cart-shop' onClick={() => setShowCart(!showCart)}><i className="fa-solid fa-cart-shopping"></i></span>
+                                {cartInfor && cartInfor?.items?.length > 0 ?
+                                    <span className='hide-quantity'>{cartInfor?.items?.length}</span>
+                                    :
+                                    <span className='hide-quantity'>0</span>
+                                }
                             </div>
+                            <span>{cartInfor?.totalPrice ? cartInfor?.totalPrice + '₫' : ''}</span>
+                        </div>
+                    </>
+                    {userInfor && userInfor.roleId === 'admin' &&
+                        <div className='' >
 
-                        </>
+                            <button
+                                className="toggle-sidebar"
+                                onClick={toggleSidebar}
+                                title="Manage"
+
+                            >
+                                <i className="fa-solid fa-bars mx-2 "></i>
+                            </button>
+
+                            <SidebarManage
+                                collapsed={collapsed}
+                                setCollapsed={setCollapsed}
+                                toggleSidebar={toggleSidebar}
+                            />
+
+                        </div>
                     }
 
                 </div>

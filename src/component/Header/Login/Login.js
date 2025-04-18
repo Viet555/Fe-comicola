@@ -43,9 +43,6 @@ const Login = () => {
 
     }
     const handleLogin = async (event) => {
-        if (event.key === 'Enter') {
-
-        }
         event.preventDefault()
         checkIsValid()
         if (!errors) {
@@ -109,11 +106,10 @@ const Login = () => {
                             // onKeyDown={handleKeyDown}
                             />
                             {errors.password && <p style={{ color: 'red' }}>password has not been entered</p>}
-                            <div className='forgot-password' onClick={() => navigate('/forgot-password')}>Forgot your password?</div>
+                            <div className='forgot-password' ><span onClick={() => navigate('/forgot-password')}>Forgot your password?</span></div>
 
                             <div className='button-control'>
                                 <button className='btn-login'
-
                                     onClick={(event) => handleLogin(event)}
                                 >Log in</button>
                                 <button className='btn-login'

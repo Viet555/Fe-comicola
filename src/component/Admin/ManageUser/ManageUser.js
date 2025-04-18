@@ -14,7 +14,6 @@ const ManageUSer = () => {
     const [currentPages, setCurrentPages] = useState(1)
     const handleEditUser = (user) => {
         setIsShow(!isshow)
-        console.log(user)
         setDataUserEdit(user)
 
     }

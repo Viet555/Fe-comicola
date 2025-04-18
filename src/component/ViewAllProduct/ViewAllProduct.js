@@ -30,7 +30,7 @@ const ViewAllProduct = () => {
                     <span className='product-name mx-1'>Xem toàn bộ sản phẩm </span>
                 </div>
                 <div className='sort-product '>
-                    <span className='text-view'>Hiển thi 1-28 của {ProductSort.length} kết quả</span>
+                    <span className='text-view'>Hiển thị {ProductSort.length} kết quả</span>
                     <span className='Sort-by'>
                         <Select
 

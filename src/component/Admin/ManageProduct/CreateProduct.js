@@ -230,7 +230,7 @@ const CreateProduct = (props) => {
                             placeholder='Choose Type'
                             options={dataSelectType}
                             onChange={(selecttedOptions) => {
-                                let selecttedValues = selecttedOptions.map(item => item.label)
+                                let selecttedValues = selecttedOptions.map((item) => item.label)
                                 setFormCreate({
                                     ...formCreate,
                                     typeProduct: selecttedValues

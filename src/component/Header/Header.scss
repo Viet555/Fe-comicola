@@ -20,11 +20,50 @@
         align-items: center;
         justify-content: center;
 
+        .dropdown-product {
+            position: relative;
+            display: inline-block;
+
+            .drop-content {
+                font-size: 15px;
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #fff;
+                min-width: 250px;
+                border-radius: 5px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+                z-index: 999;
+
+                span {
+                    text-transform: none;
+                    padding: 5px;
+                    font-size: 15px;
+                }
+            }
+
+            &:hover .drop-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0px);
+            }
+        }
+
         span {
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 14px;
             margin-left: 25px;
 
+            &:hover {
+                color: rgb(243, 99, 51)
+            }
         }
 
         :hover {
@@ -74,13 +113,14 @@
         }
 
         .find-icon {
+            position: relative;
 
 
             i {
                 position: absolute;
-                right: 14%;
-                top: 6.7%;
-                font-size: 13px;
+                right: 5%;
+                top: 20%;
+                font-size: 14px;
                 color: rgb(99, 95, 95);
             }
 
@@ -93,7 +133,7 @@
                 border: 1px solid rgba(148, 133, 133, 0.727);
                 border-radius: 5px;
                 transition: all 0.5s ease;
-                transform: translateX(-100%);
+                transform: translateY(-100%);
                 outline: none;
                 font-size: 13px;
             }
@@ -106,6 +146,12 @@
 
                 }
             }
+        }
+
+        .toggle-sidebar {
+            background-color: rgb(225, 225, 225);
+            border-radius: 5px;
+            border: 1px solid rgba(95, 95, 95, 0.773);
         }
     }
 }

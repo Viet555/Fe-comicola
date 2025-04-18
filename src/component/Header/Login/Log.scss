@@ -92,9 +92,12 @@
                     color: black;
                     font-weight: 600;
 
-                    &:hover {
-                        cursor: pointer;
+                    span {
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
+
                 }
 
                 .button-control {

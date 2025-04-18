@@ -47,9 +47,7 @@ const ProfileAccount = () => {
     }
     const handleSubmit = async () => {
         checkpass()
-        console.log(formProfile)
         let res = await UpdateUserAndPass(formProfile)
-        console.log(res)
         if (res && res.EC === 0) {
             toast.success('Update Success')
             setFormProfile({

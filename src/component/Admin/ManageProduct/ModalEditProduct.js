@@ -62,7 +62,7 @@ const ModalEditUser = (props) => {
                 bannerPrev: dataProductEdit.bannerProduct,
             })
         }
-    }, [dataProductEdit])
+    }, [dataProductEdit, show])
     // const handleSubmitUpdate = async () => {
     //     let res = await UpdateAUser(dataUserEdit._id, firstName, lastName, roleId, address, gender, image)
     //     if (res && res.EC === 0) {

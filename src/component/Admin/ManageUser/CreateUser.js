@@ -61,7 +61,6 @@ const CreateUser = (props) => {
         }
     }
     const handleUploadFile = (event) => {
-        console.log(event)
         if (event.target && event.target.files && event.target.files[0]) {
 
             const reader = new FileReader();
@@ -74,13 +73,11 @@ const CreateUser = (props) => {
         }
     }
     const handleOnchange = (event) => {
-
         setFormData({
-
             ...formData,
             [event.target.name]: event.target.value
         })
-        console.log(formData)
+
         if (event.target.value) {
             setErrors({
                 ...errors,

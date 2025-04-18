@@ -41,7 +41,7 @@ const ModalEditUser = (props) => {
             setImage(dataUserEdit.image)
             setImagePreview(dataUserEdit.image)
         }
-    }, [dataUserEdit])
+    }, [dataUserEdit, show])
     const handleSubmitUpdate = async () => {
         let res = await UpdateAUser(dataUserEdit._id, firstName, lastName, roleId, address, gender, image)
         if (res && res.EC === 0) {

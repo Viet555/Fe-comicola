@@ -21,7 +21,7 @@ const ModelDetailOrder = (props) => {
                 getListOrder()
             }
             else {
-                toast.error(res.MES)
+                toast.error(res?.MES)
             }
         }
 

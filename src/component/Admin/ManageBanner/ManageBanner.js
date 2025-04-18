@@ -51,7 +51,7 @@ const ManageBanner = () => {
             setDataBannerFirst(response.data)
         }
         else {
-            toast.error(response.MES)
+            toast.error(response?.MES)
         }
     }
     const FetchAllBannerSecondtByType = async () => {
@@ -60,7 +60,7 @@ const ManageBanner = () => {
             setDataBannerSecond(response.data)
         }
         else {
-            toast.error(response.MES)
+            toast.error(response?.MES)
         }
     }
 
@@ -342,7 +342,7 @@ const ManageBanner = () => {
                 backdrop="static"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Product</Modal.Title>
+                    <Modal.Title>Edit Product</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='modal-body'>
                     {dataAllProduct && dataAllProduct.length > 0 &&
@@ -376,7 +376,7 @@ const ManageBanner = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary"
-                        onClick={() => setShow(!show)}>
+                        onClick={() => setShowEdit(!showEdit)}>
                         cancel
                     </Button>
                     <Button variant="primary"

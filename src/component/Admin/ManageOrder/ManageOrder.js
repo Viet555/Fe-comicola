@@ -43,10 +43,14 @@ const ManageOrder = () => {
                 <tbody >
                     {listOrder && listOrder.length > 0 &&
                         listOrder.map((item, index) => {
-
+                            const isDisabled = item.status === 'Completed' || item.status === 'Canceled';
                             return (
 
-                                <tr key={`table-user-manager${index}`}>
+                                <tr
+                                    key={`table-user-manager${index}`}
+                                // className={isDisabled ? 'disabled-row' : ''}
+                                // style={{ pointerEvents: isDisabled ? 'none' : 'auto', opacity: isDisabled ? 0.5 : 1 }}
+                                >
 
                                     <td>{item.orderCode} </td>
                                     <td>{item.phoneNumber}</td>

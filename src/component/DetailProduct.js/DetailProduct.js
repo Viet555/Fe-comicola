@@ -157,17 +157,14 @@ const DetailProduct = () => {
                     </div>
 
                 </div>
-
-                <div className="content-markdown container " >
-                    {data && data.markdowns && data.markdowns[0]?.contentHTML &&
+                {data && data.markdowns && data.markdowns[0]?.contentHTML &&
+                    <div className="content-markdown container " >
                         <>
                             <span >Giới thiệu nội dung</span>
                             <div className='text-markdown' dangerouslySetInnerHTML={{ __html: data.markdowns[0]?.contentHTML }}></div>
                         </>
-                    }
-
-                </div>
-
+                    </div>
+                }
             </div>
 
             <OtherProduct
