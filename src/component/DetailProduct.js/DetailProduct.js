@@ -145,7 +145,7 @@ const DetailProduct = () => {
                                 <span className='type-active' onClick={(e) => handleOnclickType(e)}>
                                     {Array.isArray(dataDetail?.typeProduct) && dataDetail.typeProduct.length > 0
                                         ? dataDetail.typeProduct.map((item, index) => (
-                                            <span key={index} data-type={item}>
+                                            <span key={item._id} data-type={item}>
                                                 {item}{index !== dataDetail.typeProduct.length - 1 ? ' , ' : ''}
                                             </span>
                                         ))

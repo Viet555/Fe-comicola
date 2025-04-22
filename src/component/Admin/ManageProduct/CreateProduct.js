@@ -340,7 +340,7 @@ const CreateProduct = (props) => {
                             margin: '25px 20px', cursor: 'pointer',
                             width: '120px', borderRadius: '30px',
                             textAlign: 'center', padding: '6px',
-                        }}>{formCreate['previewImg2'] ? 'Switch Image' : 'Add Banner'}</label>
+                        }}>{formCreate['bannerPrev'] ? 'Switch Banner' : 'Add Banner'}</label>
                         <input className="form-control "
                             name="bannerProduct"
                             type="file"

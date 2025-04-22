@@ -8,8 +8,8 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            toast.success("Email đặt lại mật khẩu đã được gửi vui lòng kiểm tra email!");
             await axios.post("/forgot-password", { email });
-            toast.success("Email đặt lại mật khẩu đã được gửi!");
         } catch (error) {
             console.log(error)
             toast.error('error');

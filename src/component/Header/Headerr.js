@@ -10,6 +10,7 @@ import _, { assign } from 'lodash';
 import { toast } from 'react-toastify';
 import { searchProduct } from '../../service/ApiService';
 import SidebarManage from './SiderBar';
+import { persistor } from '../Store/ReduxStore';
 const Headerr = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -41,18 +42,23 @@ const Headerr = () => {
             setDataCart([])
         }
     }, [cartInfor])
-
+    useEffect(() => {
+        if (_.isEmpty(dataAllType)) {
+            dispatch(action.fetchAllTypeProduct())
+        }
+    }, [])
 
     const handleLogout = () => {
         dispatch((action.UserLogout()))
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
+        persistor.purge();
         navigate('/')
     }
     const handleOnkey = async (e) => {
 
         if (e.key === 'Enter') {
-            await haneleSearchProduct(); // Gọi hàm đăng nhập
+            await haneleSearchProduct();
         }
     }
     const haneleSearchProduct = async () => {
@@ -83,11 +89,10 @@ const Headerr = () => {
                     <div className='dropdown-product'>
                         <span>Sản phẩm</span>
                         <div className='drop-content'>
-
                             {dataAllType && dataAllType.length > 0 &&
                                 dataAllType.map(item => {
                                     return (
-                                        <span onClick={handleOnClickType}>{item.allCodeInfo?.name}</span>
+                                        <span key={item._id} onClick={handleOnClickType}>{item.allCodeInfo?.name}</span>
                                     )
                                 })
 

@@ -1,5 +1,4 @@
 import './ModelShowCart.scss';
-import test from '../../asset/Banner/ChimSeDuKy_Comishop_4.webp';
 import { DeleteProductCart, getProductCart } from '../../service/ApiService';
 import { toast } from 'react-toastify';
 import { act, useEffect, useState } from 'react';
@@ -42,7 +41,7 @@ const ModelShowCart = (props) => {
                         {dataCart && dataCart.items && dataCart.items.length > 0 ? (
                             dataCart.items.map((item, index) => (
                                 <>
-                                    <div className='d-flex my-2 ' key={index}>
+                                    <div className='d-flex my-2 ' key={item._id}>
 
                                         <div className="content-img">
                                             <img src={item?.productId?.image1} />

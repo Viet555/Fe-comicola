@@ -112,11 +112,10 @@ const ManageBanner = () => {
 
         }
         else {
-            toast.error(res.MES)
+            toast.error(res?.MES)
         }
     }
     const handleDeleteUser = async (item) => {
-        console.log(item)
         let data = await ApiDeleteBanner(item._id)
         if (data && data.EC === 0) {
             toast.success(data.MES)

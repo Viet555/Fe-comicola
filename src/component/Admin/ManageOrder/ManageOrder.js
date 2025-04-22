@@ -47,7 +47,7 @@ const ManageOrder = () => {
                             return (
 
                                 <tr
-                                    key={`table-user-manager${index}`}
+                                    key={`table-user-manager${item._id}`}
                                 // className={isDisabled ? 'disabled-row' : ''}
                                 // style={{ pointerEvents: isDisabled ? 'none' : 'auto', opacity: isDisabled ? 0.5 : 1 }}
                                 >

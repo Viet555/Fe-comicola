@@ -35,7 +35,7 @@ const NewProduct = () => {
                         {dataNewproduct && dataNewproduct.length > 0 &&
                             dataNewproduct.map((item, index) => {
                                 return (
-                                    <div className='content col-3' key={{ index }}
+                                    <div className='content col-3' key={item._id}
                                         onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}
                                     >
                                         <img
@@ -54,7 +54,7 @@ const NewProduct = () => {
                                             <span className='price'>{item.count}đ</span>
 
                                         </div>
-                                        <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
+                                        <div className='add-cart'> <span> <i className="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
                                     </div>
                                 )
                             })}

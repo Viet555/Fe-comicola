@@ -1,6 +1,6 @@
 .footer {
     margin-top: 35px;
-    background: #020202cc;
+    background: #020202de;
     color: white;
     padding: 40px 0;
     font-family: Arial, sans-serif;
@@ -24,7 +24,8 @@
 }
 
 .footer-logo h2 {
-    font-size: 24px;
+    font-weight: 600;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
@@ -39,22 +40,26 @@
 }
 
 .subscribe-box input {
+    font-size: 14px;
     flex: 1;
-    height: 40px;
+    height: 30px;
     width: 80px;
     padding: 8px;
     border: none;
     outline: none;
-    border-radius: 3px 0 0 3px;
+    border-radius: 3px
 }
 
 .subscribe-box button {
+    display: flex;
+    align-items: center;
+    height: 30px;
     padding: 8px 12px;
     background: #333;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 0 3px 3px 0;
+    border-radius: 3px
 }
 
 .subscribe-box button:hover {

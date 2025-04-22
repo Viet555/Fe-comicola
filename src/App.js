@@ -5,6 +5,7 @@ import Banner from './component/BannerHeader/Banner';
 import Footer from './component/Footer/Footer';
 import Headerr from './component/Header/Headerr';
 import AppRoute from './routes/AppRoute';
+import ScrollToTopButton from './ScrollOnTop';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <div className='App-Content'>
           <AppRoute />
         </div>
+        <ScrollToTopButton />
         <Footer />
         <ToastContainer
           position="top-center"

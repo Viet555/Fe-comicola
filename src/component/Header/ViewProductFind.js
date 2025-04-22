@@ -52,7 +52,7 @@ const ViewProductFind = () => {
                                             <span className='price'>{item.count}đ</span>
 
                                         </div>
-                                        <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
+                                        <div className='add-cart'> <span> <i className="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
                                     </div>
                                 )
                             })

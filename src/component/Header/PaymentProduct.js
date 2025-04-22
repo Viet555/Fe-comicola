@@ -1,5 +1,4 @@
 import './PaymentProduct.scss'
-import test from '../../asset/Banner/Dedokhaocoky_Digging_Comishop_04.webp'
 import Select from 'react-select'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'

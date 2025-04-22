@@ -1,5 +1,4 @@
 import './ComicsViet.scss'
-import product from '../../../asset/Banner/ChimSeDuKy_Comishop_4.webp'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as action from '../../Store/export'
@@ -34,7 +33,7 @@ const ComicsViet = () => {
                         {datacomicViet && datacomicViet.length > 0 &&
                             datacomicViet.map((item) => {
                                 return (
-                                    <div className='content col-3'
+                                    <div className='content col-3' key={item._id}
                                         onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}>
                                         <img src={item.image1}
                                             alt={item.nameProduct}
@@ -50,7 +49,7 @@ const ComicsViet = () => {
                                             <span className='price'>{item.count}</span>
 
                                         </div>
-                                        <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
+                                        <div className='add-cart'> <span> <i className="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
                                     </div>
                                 )
                             })}

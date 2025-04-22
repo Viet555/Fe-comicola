@@ -1,5 +1,4 @@
 import '../ComicsViet/ComicsViet.scss'
-import product from '../../../asset/Banner/MDDS_Comishop_0.webp'
 import { useEffect, useState } from 'react'
 import { ApiFetchAllProductByType } from '../../../service/ApiService'
 import { useNavigate } from 'react-router-dom'
@@ -32,7 +31,7 @@ const ComicsForeign = () => {
                             datacomicForeign.map((item) => {
 
                                 return (
-                                    <div className='content col-3'
+                                    <div className='content col-3 ' key={item._id}
                                         onClick={() => navigate(`/DetailProduct/${item._id}`, window.scroll(0, 0))}>
                                         <img src={item.image1}
                                             alt={item.nameProduct}
@@ -47,7 +46,7 @@ const ComicsForeign = () => {
                                             <span className='name-pro'>{item.nameProduct}</span>
                                             <span className='price'>{item.count}</span>
                                         </div>
-                                        <div className='add-cart'> <span> <i class="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
+                                        <div className='add-cart'> <span> <i className="fa-solid fa-cart-shopping mx-2"></i></span>Thêm vào giỏ hàng</div>
                                     </div>
                                 )
                             })
